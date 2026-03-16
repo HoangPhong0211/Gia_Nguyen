@@ -9,14 +9,21 @@ class Project extends Model
 {
     use HasFactory;
 
-    // Các trường được phép nhập liệu từ Form Admin
+    protected $table = 'projects';
+
     protected $fillable = [
-        'title', 
-        'slug', 
-        'description', 
-        'image', 
-        'location', 
-        'project_date', 
-        'status'
+        'title',
+        'slug',
+        'location',
+        'year',
+        'summary',
+        'featured_image',
+        'status',
+    ];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'year' => 'integer',
     ];
 }

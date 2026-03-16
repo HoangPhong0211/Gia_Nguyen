@@ -9,26 +9,30 @@ class Post extends Model
 {
     use HasFactory;
 
-    // Chống Mass Assignment: Chỉ cho phép các trường này được nhập dữ liệu
+    protected $table = 'posts';
+
     protected $fillable = [
-        'category_id', 
-        'author_id', 
-        'title', 
-        'slug', 
-        'excerpt', 
-        'content', 
-        'featured_image', 
-        'views', 
-        'status'
+        'category_id',
+        'author_id',
+        'title',
+        'slug',
+        'excerpt',
+        'content',
+        'featured_image',
+        'views',
+        'status',
     ];
 
-    // Mối quan hệ: Một bài viết thuộc về một danh mục
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    // Mối quan hệ: Một bài viết được viết bởi một người dùng (Admin)
     public function author()
     {
         return $this->belongsTo(User::class, 'author_id');

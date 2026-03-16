@@ -4,9 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-// Quan trọng: Phải import Role của Spatie
-use Spatie\Permission\Models\Role; 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,22 +20,26 @@ class DatabaseSeeder extends Seeder
         $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $editorRole = Role::firstOrCreate(['name' => 'editor']);
 
-        // 2. Tạo User Admin và gán Role ngay lập tức
-        $admin = User::firstOrCreate(
-            ['email' => 'admin@gmail.com'], // Kiểm tra nếu email đã tồn tại
+        $admin = User::query()->firstOrCreate(
+            ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Administrator',
-                'password' => bcrypt('123456'), // Mật khẩu mẫu cho bạn test
+                'password' => Hash::make('123456'),
             ]
         );
-        
-        // Gán quyền admin cho user này
+
         $admin->assignRole($adminRole);
 
-        // 3. Tạo thêm User test nếu cần
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        User::query()->firstOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Test User',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        $this->call(PostSeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(ProjectSeeder::class);
     }
 }
