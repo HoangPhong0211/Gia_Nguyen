@@ -3,25 +3,25 @@
 @section('content')
 @php
 $features = [
-'Khao sat hien truong va thu thap du lieu',
-'Phan tich va danh gia ket qua chuyen mon',
-'Bao cao ky thuat ro rang, de hieu',
-'De xuat giai phap toi uu cho cong trinh',
+'Khảo sát hiện trường và thu thập dữ liệu',
+'Phân tích và đánh giá kết quả chuyên môn',
+'Báo cáo kỹ thuật rõ ràng, dễ hiểu',
+'Đề xuất giải pháp tối ưu cho công trình',
 ];
 @endphp
 
 <section class="mx-auto w-full max-w-6xl px-5 py-16">
     <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div class="space-y-5">
-            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Dich vu</p>
+            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Dịch vụ</p>
             <h1 class="text-4xl md:text-5xl font-display">{{ $service->title }}</h1>
             <p class="text-black/70">{{ $service->summary }}</p>
             <div class="flex flex-wrap gap-4">
                 <a href="/lien-he" class="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-white font-semibold">
-                    Yeu cau bao gia
+                    Yêu cầu báo giá
                 </a>
                 <a href="/dich-vu" class="inline-flex items-center justify-center rounded-full border border-black/20 px-6 py-3 font-semibold">
-                    Quay lai dich vu
+                    Quay lại dịch vụ
                 </a>
             </div>
         </div>
@@ -33,8 +33,8 @@ $features = [
             @else
             <div class="aspect-[4/3] rounded-3xl bg-[linear-gradient(135deg,_#f3d3bf,_#f9f2e7)] grid place-items-center">
                 <div class="text-center space-y-2">
-                    <p class="font-display text-2xl">Mo ta du an</p>
-                    <p class="text-sm text-black/60">Hinh anh minh hoa dich vu</p>
+                    <p class="font-display text-2xl">Mô tả dự án</p>
+                    <p class="text-sm text-black/60">Hình ảnh minh họa dịch vụ</p>
                 </div>
             </div>
             @endif
@@ -51,7 +51,7 @@ $features = [
         @foreach ($features as $feature)
         <div class="rounded-3xl border border-black/10 bg-white p-6">
             <h3 class="font-display text-xl">{{ $feature }}</h3>
-            <p class="mt-2 text-sm text-black/60">Thong tin chi tiet ve pham vi cong viec va tai lieu lien quan.</p>
+            <p class="mt-2 text-sm text-black/60">Thông tin chi tiết về phạm vi công việc và tài liệu liên quan.</p>
         </div>
         @endforeach
     </div>

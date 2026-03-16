@@ -5,12 +5,6 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import Alpine from 'alpinejs';
-
-window.Alpine = Alpine;
-
-Alpine.start();
-
 const toggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('[data-menu-target]');
 

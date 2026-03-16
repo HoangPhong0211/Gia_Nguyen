@@ -31,6 +31,8 @@ Route::view('/ve-chung-toi', 'about');
 Route::get('/dich-vu', [ServiceController::class, 'index'])->name('services');
 Route::get('/dich-vu/{slug}', [ServiceController::class, 'show'])->name('services.show');
 Route::get('/du-an', [ProjectController::class, 'index'])->name('projects');
+Route::view('/doi-tac-khach-hang', 'partners')->name('partners');
+Route::view('/chung-chi', 'certificates')->name('certificates');
 Route::get('/tin-tuc', [PostController::class, 'index'])->name('news');
 Route::get('/tin-tuc/{slug}', [PostController::class, 'show'])->name('posts.show');
 Route::view('/lien-he', 'contact')->name('contact');

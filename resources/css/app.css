@@ -5,7 +5,8 @@
 :root {
     --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
-    --font-display: 'Fraunces', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    --font-display: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
     --color-sand: #f6f1e8;
     --color-ink: #1a1b1f;
     --color-brand: #d0722d;
@@ -33,6 +34,7 @@
     h4 {
         font-family: var(--font-display);
         letter-spacing: -0.02em;
+        font-kerning: none;
     }
 }
 

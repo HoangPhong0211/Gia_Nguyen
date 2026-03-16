@@ -1,13 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-
-
 <section class="mx-auto w-full max-w-6xl px-5 py-16">
     <div class="space-y-4">
-        <p class="text-sm uppercase tracking-[0.3em] text-black/50">Goc tin tuc</p>
-        <h1 class="text-4xl md:text-5xl font-display">Bai viet moi nhat</h1>
+        <p class="text-sm uppercase tracking-[0.3em] text-black/50">Góc tin tức</p>
+        <h1 class="text-4xl md:text-5xl font-display">Bài viết mới nhất</h1>
+        <p class="text-black/70 max-w-3xl">Nội dung nên được bổ sung theo 3 nhóm chính: Báo giá, kiến thức chuyên ngành và hoạt động công ty.</p>
     </div>
+
+    <div class="mt-8 grid gap-4 md:grid-cols-3">
+        @foreach ([
+        'Báo giá dịch vụ khảo sát - thí nghiệm',
+        'Kiến thức chuyên ngành địa kỹ thuật',
+        'Hoạt động công ty và dự án mới',
+        ] as $topic)
+        <div class="rounded-2xl border border-black/10 bg-white p-5">
+            <p class="font-semibold">{{ $topic }}</p>
+            <p class="mt-2 text-sm text-black/60">Bạn có thể đăng định kỳ theo tháng để giữ website luôn tươi mới.</p>
+        </div>
+        @endforeach
+    </div>
+
     <div class="mt-10 grid gap-6 md:grid-cols-2">
         @forelse ($posts as $post)
         <a href="{{ route('posts.show', $post->slug) }}" class="rounded-3xl border border-black/10 bg-white overflow-hidden shadow-soft">
@@ -26,7 +39,7 @@
         </a>
         @empty
         <div class="rounded-3xl border border-black/10 bg-white p-6 text-sm text-black/60">
-            Chua co bai viet trong co so du lieu.
+            Chưa có bài viết trong cơ sở dữ liệu.
         </div>
         @endforelse
     </div>

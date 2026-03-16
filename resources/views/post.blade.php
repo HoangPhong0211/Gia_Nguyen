@@ -3,10 +3,10 @@
 @section('content')
 <section class="mx-auto w-full max-w-4xl px-5 py-16">
     <div class="space-y-4">
-        <p class="text-sm uppercase tracking-[0.3em] text-black/50">Tin tuc</p>
+        <p class="text-sm uppercase tracking-[0.3em] text-black/50">Tin tức</p>
         <h1 class="text-4xl md:text-5xl font-display">{{ $post->title }}</h1>
         <p class="text-black/60">
-            Cap nhat: {{ optional($post->updated_at)->format('d/m/Y') ?? '16/03/2026' }} · {{ $post->views }} luot xem
+            Cập nhật: {{ optional($post->updated_at)->format('d/m/Y') ?? '16/03/2026' }} · {{ $post->views }} lượt xem
         </p>
     </div>
     @if ($post->featured_image)

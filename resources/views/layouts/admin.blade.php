@@ -105,27 +105,27 @@
     <div class="sidebar">
         <div class="sidebar-header">NMT ADMIN</div>
         <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-            <i class="fa fa-home" style="width: 25px;"></i> Dashboard
+            <i class="fa fa-home" style="width: 25px;"></i> Bảng điều khiển
         </a>
         <a href="{{ route('admin.posts.index') }}" class="nav-item">
-            <i class="fa fa-newspaper" style="width: 25px;"></i> Bai viet
+            <i class="fa fa-newspaper" style="width: 25px;"></i> Bài viết
         </a>
         <a href="{{ route('admin.services.index') }}" class="nav-item">
-            <i class="fa fa-cogs" style="width: 25px;"></i> Dich vu
+            <i class="fa fa-cogs" style="width: 25px;"></i> Dịch vụ
         </a>
         <a href="{{ route('admin.projects.index') }}" class="nav-item">
-            <i class="fa fa-briefcase" style="width: 25px;"></i> Du an
+            <i class="fa fa-briefcase" style="width: 25px;"></i> Dự án
         </a>
         <form method="POST" action="{{ route('logout') }}" style="margin-top: 50px;">
             @csrf
-            <button type="submit" class="logout-btn"><i class="fa fa-sign-out-alt" style="width: 25px;"></i> Dang xuat</button>
+            <button type="submit" class="logout-btn"><i class="fa fa-sign-out-alt" style="width: 25px;"></i> Đăng xuất</button>
         </form>
     </div>
 
     <div class="main-content">
         <div class="header">
-            <h2 style="margin:0;">He thong quan tri</h2>
-            <div>Xin chao, <strong>{{ Auth::user()->name }}</strong></div>
+            <h2 style="margin:0;">Hệ thống quản trị</h2>
+            <div>Xin chào, <strong>{{ Auth::user()->name }}</strong></div>
         </div>
         <div class="container">
             @yield('content')
