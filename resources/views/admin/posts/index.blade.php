@@ -34,7 +34,6 @@
                 <td style="padding: 15px;">
                     <div style="width: 70px; height: 50px; overflow: hidden; border-radius: 8px; border: 1px solid #e2e8f0; background: #f1f5f9;">
                         @php
-                            // Tối ưu đường dẫn ảnh: Chỉ thêm /images/ nếu trong DB không có sẵn
                             $imgName = $post->featured_image;
                             $src = (str_starts_with($imgName, 'http') || str_contains($imgName, 'images/')) 
                                     ? asset($imgName) 

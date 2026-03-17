@@ -87,6 +87,22 @@ class PostController extends Controller
             $post->featured_image = $filename;
         }
 
+        if ($request->hasFile('featured_image')) {
+            // 1. Xóa ảnh cũ khỏi thư mục nếu nó tồn tại và không phải ảnh mẫu
+            if ($post->featured_image && file_exists(public_path('images/' . $post->featured_image))) {
+                // Kiểm tra để tránh xóa nhầm ảnh mẫu của hệ thống
+                if (!str_contains($post->featured_image, 'post-item')) {
+                    unlink(public_path('images/' . $post->featured_image));
+                }
+            }
+
+            // 2. Xử lý upload ảnh mới (giữ nguyên code của bạn)
+            $file = $request->file('featured_image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images'), $filename);
+            $post->featured_image = $filename;
+        }
+
         // 5. Lưu vào Database
         $post->save();
 

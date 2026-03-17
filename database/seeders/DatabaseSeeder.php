@@ -37,8 +37,13 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $this->call(PostSeeder::class);
-        $this->call(ServiceSeeder::class);
-        $this->call(ProjectSeeder::class);
+        $this->call([
+                // Phải tạo danh mục trước
+            CategorySeeder::class,
+                // Sau đó mới tạo bài viết (vì bài viết cần ID của danh mục)
+            PostSeeder::class,
+            ProjectSeeder::class,
+            ServiceSeeder::class,
+        ]);
     }
 }

@@ -35,7 +35,10 @@ Route::view('/doi-tac-khach-hang', 'partners')->name('partners');
 Route::view('/chung-chi', 'certificates')->name('certificates');
 Route::get('/tin-tuc', [PostController::class, 'index'])->name('news');
 Route::get('/tin-tuc/{slug}', [PostController::class, 'show'])->name('posts.show');
-Route::view('/lien-he', 'contact')->name('contact');
+Route::get('/lien-he', function () {
+    return view('contact');
+})->name('contact');
+Route::post('/lien-he', [\App\Http\Controllers\Admin\ContactController::class, 'store'])->name('contact.store');
 Route::view('/chinh-sach-bao-mat', 'privacy')->name('privacy');
 
 Route::get('/giam-sat-va-tu-van-xay-dung', function () {
@@ -70,9 +73,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
-    Route::get('/contacts', [\App\Http\Controllers\Admin\ContactController::class, 'index'])->name('contacts.index');
-});
 
+    Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
+    
+    Route::post('/contacts/{id}/status', [\App\Http\Controllers\Admin\ContactController::class, 'updateStatus'])->name('contacts.updateStatus');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
