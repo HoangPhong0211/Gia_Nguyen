@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('title');
             $table->string('slug')->unique();
 
-            // BỔ SUNG 2 DÒNG NÀY
             $table->string('category')->comment('bridge, factory, urban');
             $table->string('location')->nullable();
             $table->integer('year')->nullable();

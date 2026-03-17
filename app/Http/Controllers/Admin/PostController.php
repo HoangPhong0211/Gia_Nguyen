@@ -13,14 +13,14 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = \App\Models\Post::with('category')->latest()->paginate(10);
+        $posts = Post::with('category')->latest()->paginate(10);
 
         return view('admin.posts.index', compact('posts'));
     }
 
     public function create()
     {
-        $categories = \App\Models\Category::all();
+        $categories = Category::all();
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -34,7 +34,7 @@ class PostController extends Controller
         ]);
 
         $post = new Post($request->all());
-        $post->slug = Str::slug($request->title);
+        $post->slug = Str::slug($request->input('title'));
         $post->author_id = Auth::id(); // Tự động lấy ID người đang login
 
         // Xử lý upload ảnh nếu có
@@ -44,5 +44,58 @@ class PostController extends Controller
 
         $post->save();
         return redirect()->route('admin.posts.index')->with('success', 'Đã thêm bài viết mới!');
+    }
+
+    public function edit($id)
+    {
+        // Tìm bài viết theo ID, nếu không thấy sẽ hiện lỗi 404
+        $post = Post::findOrFail($id);
+
+        // Lấy danh sách danh mục để hiện ở ô Select
+        $categories = Category::all();
+
+        // Trả về view sửa bài viết và truyền dữ liệu sang
+        return view('admin.posts.edit', compact('post', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // 1. Tìm bài viết cần sửa
+        $post = Post::findOrFail($id);
+
+        // 2. Kiểm tra dữ liệu đầu vào (Validation) để tránh lỗi bảo mật
+        $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required',
+        ]);
+
+        // 3. Chuẩn bị dữ liệu để cập nhật
+        $post->title = $request->input('title');
+        $post->slug = Str::slug($request->input('title')); // Tự động tạo link sạch (SEO)
+        $post->content = $request->input('content');
+        $post->category_id = $request->input('category_id');
+        $post->status = $request->input('status', $post->status);
+
+        // 4. Xử lý upload ảnh (nếu người dùng chọn ảnh mới)
+        if ($request->hasFile('featured_image')) {
+            $file = $request->file('featured_image');
+            $filename = time() . '_' . $file->getClientOriginalName();
+
+            // Lưu trực tiếp vào thư mục public/images để hiển thị ngay
+            $file->move(public_path('images'), $filename);
+
+            $post->featured_image = $filename;
+        }
+
+        // 5. Lưu vào Database
+        $post->save();
+
+        // 6. Quay lại trang danh sách với thông báo thành công
+        return redirect()->route('admin.posts.index')->with('success', 'Cập nhật bài viết thành công!');
+    }
+
+    public function show($id)
+    {
+        return redirect()->route('admin.posts.edit', $id);
     }
 }
