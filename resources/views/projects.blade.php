@@ -3,81 +3,98 @@
 @section('content')
 <section class="mx-auto w-full max-w-6xl px-5 py-16">
     <div class="space-y-4">
-        <p class="text-sm uppercase tracking-[0.3em] text-black/50">Dự án tiêu biểu</p>
-        <h1 class="text-4xl md:text-5xl font-display">Hồ sơ công trình đã thực hiện</h1>
-        <p class="text-black/70 max-w-3xl">Dự án được phân nhóm theo loại hình để thuận tiện tra cứu: Cầu/đường cao tốc, nhà máy công nghiệp và khu đô thị - dân cư.</p>
+        <p class="text-sm uppercase tracking-[0.3em] text-black/50">Năng lực thực hiện</p>
+        <h1 class="text-4xl md:text-5xl font-display uppercase">Dự án tiêu biểu</h1>
+        <p class="text-black/70 max-w-3xl">Công ty Gia Nguyên đã thực hiện thí nghiệm và kiểm định cho hơn 91 dự án trọng điểm, đảm bảo chất lượng hạ tầng bền vững.</p>
     </div>
 
-    {{-- Khai báo Alpine.js với dữ liệu động --}}
-    <div x-data="{ tab: 'bridge', modalOpen: false, modalImage: '', modalName: '' }" 
+    {{-- Khai báo Alpine.js với dữ liệu dự án Gia Nguyên --}}
+    <div x-data="{ 
+            tab: 'transport', 
+            modalOpen: false, 
+            modalImage: '', 
+            modalName: '' 
+         }" 
          class="mt-10 space-y-6" 
          @keydown.escape.window="modalOpen = false">
         
         <div class="flex flex-wrap gap-3">
-            <button @click="tab = 'bridge'" :class="tab === 'bridge' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Cầu / Đường cao tốc</button>
-            <button @click="tab = 'factory'" :class="tab === 'factory' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Nhà máy công nghiệp</button>
-            <button @click="tab = 'urban'" :class="tab === 'urban' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Khu đô thị - dân cư</button>
+            <button @click="tab = 'transport'" :class="tab === 'transport' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Giao thông Trọng điểm</button>
+            <button @click="tab = 'energy'" :class="tab === 'energy' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Năng lượng Tái tạo</button>
+            <button @click="tab = 'civil'" :class="tab === 'civil' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Dân dụng & Thủy lợi</button>
         </div>
 
-        {{-- Lặp qua 3 danh mục dự án --}}
-        @foreach(['bridge', 'factory', 'urban'] as $cat)
-            <div x-show="tab === '{{ $cat }}'" x-transition class="grid gap-6 md:grid-cols-2">
-                @forelse ($projects->where('category', $cat) as $project)
-                    <button
-                        type="button"
-                        @click="modalOpen = true; modalImage = '{{ asset('images/' . $project->image) }}'; modalName = '{{ $project->title }}'"
-                        class="group rounded-3xl border border-black/10 bg-white overflow-hidden shadow-soft text-left transition hover:shadow-lg">
-                        
-                        <div class="relative overflow-hidden aspect-[4/3]">
-                            <img src="{{ asset('images/' . $project->image) }}" 
-                                 alt="{{ $project->title }}" 
-                                 class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                                <span class="bg-white/90 text-black px-4 py-2 rounded-full text-sm font-semibold">Xem ảnh lớn</span>
-                            </div>
-                        </div>
-
-                        <div class="p-5">
-                            <h3 class="font-display text-2xl text-ink">{{ $project->title }}</h3>
-                            <p class="mt-2 text-sm text-black/60">
-                                <i class="fa-solid fa-location-dot mr-1"></i> {{ $project->location }} 
-                                <span class="mx-1">·</span> 
-                                <i class="fa-solid fa-calendar-days mr-1"></i> {{ $project->year }}
-                            </p>
-                            <p class="mt-3 text-sm text-black/70 leading-relaxed">{{ $project->summary }}</p>
-                        </div>
-                    </button>
-                @empty
-                    <div class="col-span-2 py-12 text-center bg-stone/30 rounded-3xl border border-dashed border-black/10">
-                        <p class="text-black/40 italic">Hiện chưa có dữ liệu cho mục này.</p>
-                    </div>
-                @endforelse
-            </div>
-        @endforeach
-
-        {{-- Modal xem ảnh lớn (Giữ nguyên logic của bạn) --}}
-        <div x-show="modalOpen" 
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100"
-             x-transition:leave-end="opacity-0"
-             class="fixed inset-0 z-[90] flex items-center justify-center p-4 sm:p-6" 
-             style="display: none;">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
             
-            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" @click="modalOpen = false"></div>
-            
-            <div class="relative z-10 w-full max-w-5xl rounded-2xl bg-white p-2 shadow-2xl" @click.stop>
-                <button type="button" 
-                        class="absolute -top-12 right-0 h-10 w-10 text-white text-4xl hover:text-brand transition"
-                        @click="modalOpen = false">&times;</button>
-                
-                <img :src="modalImage" :alt="modalName" class="max-h-[80vh] w-full rounded-xl object-contain bg-black/5">
-                <div class="px-4 py-3 flex justify-between items-center">
-                    <p class="font-display text-lg text-ink" x-text="modalName"></p>
-                    <span class="text-xs text-black/40 uppercase tracking-widest">Hoàng Gia Việt Nam</span>
+            <template x-if="tab === 'transport'">
+                <div class="contents">
+                    @php
+                        $transportProjects = [
+                            ['name' => 'Dự án đường bộ cao tốc Bắc - Nam (Đoạn nối QL1)', 'desc' => 'Thí nghiệm vật liệu & Kiểm định nền móng'],
+                            ['name' => 'Đường ven biển Bình Tiên – Cà Ná', 'desc' => 'Thử nghiệm cơ lý đất và bê tông nhựa'],
+                            ['name' => 'Đường nối Ninh Thuận đi Tà Năng (Lâm Đồng)', 'desc' => 'Quan trắc và thí nghiệm hiện trường'],
+                            ['name' => 'Đường vành đai phía Bắc tỉnh Ninh Thuận', 'desc' => 'Kiểm soát chất lượng vật liệu đầu vào'],
+                            ['name' => 'Nâng cấp, mở rộng Quốc lộ 27', 'desc' => 'Thí nghiệm hiện trường & LAS-XD 980'],
+                        ];
+                    @endphp
+                    @foreach($transportProjects as $p)
+                        <div class="group relative overflow-hidden rounded-2xl border border-black/5 bg-gray-50 p-6 transition hover:shadow-lg">
+                            <h3 class="text-xl font-bold text-ink leading-tight">{{ $p['name'] }}</h3>
+                            <p class="mt-2 text-sm text-black/60">{{ $p['desc'] }}</p>
+                        </div>
+                    @endforeach
                 </div>
+            </template>
+
+            <template x-if="tab === 'energy'">
+                <div class="contents">
+                    @php
+                        $energyProjects = [
+                            ['name' => 'Điện mặt trời Phước Thái 1 (Dự án EPC)', 'desc' => 'Kiểm định kết cấu và hệ thống móng pin'],
+                            ['name' => 'Dự án Điện gió Đầm Nại', 'desc' => 'Thử tải nền đường và móng trụ turbine'],
+                            ['name' => 'Nhà máy điện năng lượng mặt trời BIM', 'desc' => 'Thí nghiệm cơ lý vật liệu xây dựng'],
+                            ['name' => 'ĐMT Phước Hữu – Ninh Phước', 'desc' => 'Thí nghiệm vật liệu chuyên ngành'],
+                            ['name' => 'Nhà máy điện mặt trời Mỹ Sơn 1 & 2', 'desc' => 'Kiểm soát chất lượng thi công hạ tầng'],
+                        ];
+                    @endphp
+                    @foreach($energyProjects as $p)
+                        <div class="group relative overflow-hidden rounded-2xl border border-black/5 bg-yellow-50 p-6 transition hover:shadow-lg">
+                            <h3 class="text-xl font-bold text-ink leading-tight">{{ $p['name'] }}</h3>
+                            <p class="mt-2 text-sm text-black/60">{{ $p['desc'] }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </template>
+
+            <template x-if="tab === 'civil'">
+                <div class="contents">
+                    @php
+                        $civilProjects = [
+                            ['name' => 'Hệ thống thủy lợi Tân Mỹ', 'desc' => 'Thí nghiệm bê tông thủy công & Đất đắp'],
+                            ['name' => 'Trụ sở Viện kiểm sát nhân dân tỉnh Ninh Thuận', 'desc' => 'Thử nén mẫu bê tông & Cốt thép'],
+                            ['name' => 'Chung cư Phú Thịnh Plaza', 'desc' => 'Kiểm định chất lượng công trình dân dụng'],
+                            ['name' => 'Trường THPT Nhơn Hải', 'desc' => 'Thí nghiệm vật liệu xây dựng'],
+                            ['name' => 'Hệ thống kênh Chàm', 'desc' => 'Thử nghiệm cơ lý và chất lượng vữa'],
+                        ];
+                    @endphp
+                    @foreach($civilProjects as $p)
+                        <div class="group relative overflow-hidden rounded-2xl border border-black/5 bg-blue-50 p-6 transition hover:shadow-lg">
+                            <h3 class="text-xl font-bold text-ink leading-tight">{{ $p['name'] }}</h3>
+                            <p class="mt-2 text-sm text-black/60">{{ $p['desc'] }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </template>
+
+        </div>
+
+        {{-- Phần Modal (Nếu bạn muốn dùng ảnh sau này, hãy giữ lại logic này) --}}
+        <div x-show="modalOpen" style="display: none;" class="fixed inset-0 z-[90] flex items-center justify-center p-6">
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" @click="modalOpen = false"></div>
+            <div class="relative z-10 w-full max-w-5xl rounded-2xl bg-white p-2 shadow-2xl">
+                <button type="button" class="absolute -top-12 right-0 text-white text-4xl" @click="modalOpen = false">&times;</button>
+                <img :src="modalImage" class="max-h-[80vh] w-full rounded-xl object-contain bg-black/5">
+                <div class="px-4 py-3"><p class="font-display text-lg text-ink" x-text="modalName"></p></div>
             </div>
         </div>
     </div>

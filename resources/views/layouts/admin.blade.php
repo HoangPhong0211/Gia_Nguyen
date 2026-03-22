@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin Panel - Dia Chat NMT</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
@@ -103,28 +103,39 @@
 
 <body>
     <div class="sidebar">
-        <div class="sidebar-header">NMT ADMIN</div>
-        <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+        <div class="sidebar-header">ADMIN</div>
+        <a href="{{ route('admin.dashboard') }}"
+            class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             <i class="fa fa-home" style="width: 25px;"></i> Bảng điều khiển
         </a>
-        <a href="{{ route('admin.posts.index') }}" class="nav-item {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.posts.index') }}"
+            class="nav-item {{ request()->routeIs('admin.posts.*') ? 'active' : '' }}">
             <i class="fa fa-newspaper" style="width: 25px;"></i> Bài viết
         </a>
-        <a href="{{ route('admin.services.index') }}" class="nav-item {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.services.index') }}"
+            class="nav-item {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
             <i class="fa fa-cogs" style="width: 25px;"></i> Dịch vụ
         </a>
-        <a href="{{ route('admin.projects.index') }}" class="nav-item {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+        <a href="{{ route('admin.certificates.index') }}"
+            class="nav-item {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+            <i class="fa fa-briefcase" style="width: 25px;"></i> Chứng chỉ
+        </a>
+        <a href="{{ route('admin.projects.index') }}"
+            class="nav-item {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
             <i class="fa fa-briefcase" style="width: 25px;"></i> Dự án
         </a>
-        
+
         {{-- THÊM MỤC LIÊN HỆ TẠI ĐÂY --}}
-        <a href="{{ route('admin.contacts.index') }}" class="nav-item {{ request()->routeIs('admin.contacts.*') ? 'active' : '' }}" style="display: flex; align-items: center; justify-content: space-between;">
+        <a href="{{ route('admin.contacts.index') }}"
+            class="nav-item {{ request()->routeIs('admin.contacts.*') ? 'active' : '' }}"
+            style="display: flex; align-items: center; justify-content: space-between;">
             <div>
                 <i class="fa fa-envelope" style="width: 25px;"></i> Liên hệ
             </div>
             @php $newContacts = \App\Models\Contact::where('status', 'new')->count(); @endphp
             @if($newContacts > 0)
-                <span style="background: #e74c3c; color: white; border-radius: 10px; padding: 2px 8px; font-size: 11px; font-weight: bold;">
+                <span
+                    style="background: #e74c3c; color: white; border-radius: 10px; padding: 2px 8px; font-size: 11px; font-weight: bold;">
                     {{ $newContacts }}
                 </span>
             @endif
@@ -132,7 +143,8 @@
 
         <form method="POST" action="{{ route('logout') }}" style="margin-top: 50px;">
             @csrf
-            <button type="submit" class="logout-btn"><i class="fa fa-sign-out-alt" style="width: 25px;"></i> Đăng xuất</button>
+            <button type="submit" class="logout-btn"><i class="fa fa-sign-out-alt" style="width: 25px;"></i> Đăng
+                xuất</button>
         </form>
     </div>
 

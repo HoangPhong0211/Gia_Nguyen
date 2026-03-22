@@ -23,9 +23,9 @@
                 <div class="flex flex-wrap gap-4 items-center">
                     <span class="flex items-center gap-2">
                         <span class="inline-block h-2 w-2 rounded-full bg-brand"></span>
-                        Hotline: 0982 461 026
+                        Hotline: 0259 353 1368 - 0908 700 009
                     </span>
-                    <span class="hidden md:inline">Email: Hientvxd7217@gmail.com</span>
+                    <span class="hidden md:inline">Email: gianguyen.nt@gmail.com</span>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="text-white/70">Địa kỹ thuật - Khảo sát - Thí nghiệm</span>
@@ -38,8 +38,8 @@
                 <a href="/" class="flex items-center gap-3">
                     <span class="grid place-items-center h-11 w-11 rounded-full bg-brand text-white font-display text-lg">N</span>
                     <span class="flex flex-col leading-tight">
-                        <span class="font-display text-lg">Hoàng Gia Việt Nam</span>
-                        <span class="text-xs uppercase tracking-[0.2em] text-black/60">LAS-XD 1109</span>
+                        <span class="font-display text-lg">Công ty TNHH Xây dựng và Thương mại Gia Nguyên</span>
+                        <span class="text-xs uppercase tracking-[0.2em] text-black/60">LAS-XD 980</span>
                     </span>
                 </a>
 
@@ -83,8 +83,8 @@
         <footer class="bg-[color:var(--color-ink)] text-white">
             <div class="mx-auto w-full max-w-6xl px-5 py-14 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
                 <div class="space-y-4">
-                    <h3 class="font-display text-xl">Hoàng Gia Việt Nam</h3>
-                    <p class="text-white/70 text-sm">Công ty Cổ phần Địa kỹ thuật Hoàng Gia Việt Nam - Cung cấp dữ liệu tin cậy phục vụ xây dựng hạ tầng.</p>
+                    <h3 class="font-display text-xl">Công ty TNHH Xây dựng & Thương mại Gia Nguyên</h3>
+                    <p class="text-white/70 text-sm">Chất lượng khẳng định - Công trình bền vững</p>
                     <div class="flex items-center gap-3">
                         <a href="#" class="h-9 w-9 rounded-full border border-white/20 grid place-items-center text-white/80">F</a>
                         <a href="#" class="h-9 w-9 rounded-full border border-white/20 grid place-items-center text-white/80">Y</a>
@@ -107,16 +107,15 @@
                 </div>
                 <div class="space-y-3 text-sm">
                     <h4 class="font-display text-lg">Liên hệ</h4>
-                    <p class="text-white/70">Công ty Cổ phần Địa kỹ thuật Hoàng Gia Việt Nam</p>
-                    <p class="text-white/70">Số 55 Cầu Cốn, P. Trần Hưng Đạo, TP Hải Dương, Tỉnh Hải Dương</p>
-                    <p class="text-white/70">Hotline: 0982 461 026</p>
-                    <p class="text-white/70">Email: Hientvxd7217@gmail.com</p>
+                    <p class="text-white/70">Công ty TNHH Xây dựng & Thương mại Gia Nguyên.</p>
+                    <p class="text-white/70">Khu tái định cư Tháp Chàm, KP7, P. Bảo An, TP. Phan Rang-Tháp Chàm, Ninh Thuận</p>
+                    <p class="text-white/70">Hotline: 0259 353 1368 - 0908 700 009</p>
+                    <p class="text-white/70">Email: gianguyen.nt@gmail.com</p>
                 </div>
             </div>
             <div class="border-t border-white/10">
                 <div class="mx-auto w-full max-w-6xl px-5 py-4 text-xs text-white/60 flex flex-wrap justify-between gap-2">
-                    <span>© 2026 Công ty Cổ phần Địa kỹ thuật Hoàng Gia Việt Nam. Đã đăng ký bản quyền.</span>
-                    <span>Thiết kế giao diện mẫu</span>
+                    <span>© 2026 Công ty TNHH Xây dựng & Thương mại Gia Nguyên. Đã đăng ký bản quyền.</span>
                 </div>
             </div>
         </footer>

@@ -11,20 +11,20 @@ $heroSlides = [
 
 $featuredServices = [
 [
-'title' => 'Khoan khảo sát địa chất',
-'desc' => 'Khoan thăm dò, lấy mẫu, xác định điều kiện địa tầng phục vụ thiết kế móng.',
+'title' => 'Thí nghiệm Vật liệu Xây dựng',
+'desc' => 'Kiểm tra chỉ tiêu cơ lý của Xi măng, cốt liệu (cát, đá), gạch, ngói, vữa và bê tông nhựa.',
 ],
 [
-'title' => 'Thí nghiệm hiện trường / trong phòng',
-'desc' => 'Thực hiện các phép thử cơ lý đất, đá và thí nghiệm hiện trường theo tiêu chuẩn áp dụng.',
+'title' => 'Thí nghiệm Đất & Nền móng',
+'desc' => 'Xác định độ chặt K, thí nghiệm CBR, nén lún, cắt cánh và các chỉ tiêu cơ lý đất hiện trường.',
 ],
 [
-'title' => 'Khảo sát địa hình',
-'desc' => 'Đo đạc, lập bình đồ, cao độ và hồ sơ địa hình phục vụ quy hoạch - thi công.',
+'title' => 'Thí nghiệm Kim loại & Mối hàn',
+'desc' => 'Kiểm tra cường độ kéo, uốn của thép thanh, thép hình và chất lượng các mối hàn liên kết.',
 ],
 [
-'title' => 'Thí nghiệm vật liệu xây dựng',
-'desc' => 'Kiểm tra chất lượng vật liệu đầu vào và cấu kiện theo quy chuẩn hiện hành.',
+'title' => 'Kiểm định & Quan trắc công trình',
+'desc' => 'Thử tải nền đường, kiểm định chất lượng bê tông bằng phương pháp không phá hủy (súng bật nẩy, siêu âm).',
 ],
 ];
 
@@ -40,11 +40,10 @@ $featuredProjects = [
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(208,114,45,0.2),_transparent_60%)]"></div>
     <div class="relative mx-auto w-full max-w-6xl px-5 py-14 lg:py-20">
         <div class="space-y-5 max-w-3xl">
-            <p class="text-sm uppercase tracking-[0.3em] text-black/60">Công ty Cổ phần Địa kỹ thuật Hoàng Gia Việt Nam</p>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-display">Hoàng Gia Việt Nam: <span class="whitespace-nowrap">Chuẩn dữ liệu - Vững hạ tầng.</span></h1>
+            <p class="text-sm uppercase tracking-[0.3em] text-black/60">Công ty TNHH Xây dựng và Thương mại Gia Nguyên</p>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-display">CÔNG TY TNHH XÂY DỰNG VÀ THƯƠNG MẠI GIA NGUYÊN: <span class="whitespace-nowrap">Chất lượng khẳng định - Công trình bền vững.</span></h1>
             <p class="text-base md:text-lg text-black/70">
-                Thành lập năm 2011, Hoàng Gia Việt Nam hoạt động với mã LAS-XD 1109 trong các lĩnh vực khảo sát,
-                thí nghiệm và kiểm định, đồng hành cùng chủ đầu tư và nhà thầu trong các dự án hạ tầng, dân dụng, công nghiệp.
+                Thành lập từ năm 2010, Công ty Gia Nguyên tự hào sở hữu phòng thí nghiệm chuyên ngành xây dựng mã số LAS-XD 980. Chúng tôi chuyên cung cấp các dịch vụ thí nghiệm vật liệu, kiểm định chất lượng và tư vấn kỹ thuật, cam kết đồng hành cùng quý khách hàng tạo nên những công trình hạ tầng, năng lượng và dân dụng đạt tiêu chuẩn quốc gia.
             </p>
             <div class="flex flex-wrap gap-3 text-sm font-medium">
                 <span class="rounded-full bg-white px-4 py-2 border border-black/10">Chính xác</span>
@@ -96,25 +95,24 @@ $featuredProjects = [
             <p class="text-sm uppercase tracking-[0.3em] text-white/60">Năng lực thiết bị</p>
             <h2 class="text-3xl md:text-4xl font-display">Thiết bị và chứng nhận nổi bật</h2>
             <p class="text-white/70">
-                Hệ thống máy khoan XY-1, thiết bị xuyên tĩnh CPT cùng quy trình kiểm soát chất lượng chặt chẽ giúp dữ liệu
-                khảo sát và thí nghiệm luôn có độ tin cậy cao, phục vụ thiết kế và thi công an toàn.
+                Hệ thống Kiểm định và Thí nghiệm chuyên ngành LAS-XD 980, tập hợp các thiết bị đo lường và thử nghiệm hiện đại, được hiệu chuẩn định kỳ bởi các đơn vị uy tín, đảm bảo mọi kết quả thí nghiệm đều chính xác, khách quan và tuân thủ nghiêm ngặt tiêu chuẩn ISO/IEC 17025.
             </p>
             <div class="grid gap-4 text-sm">
                 <a href="{{ route('certificates') }}#xy1" class="block rounded-2xl border border-white/15 p-4 transition hover:border-white/40 hover:bg-white/5">
-                    <p class="font-semibold">Máy thử độ bền nén TYE-2000</p>
-                    <p class="text-white/70 mt-1">Thực hiện thí nghiệm xác định cường độ chịu nén của các mẫu vật liệu xây dựng với độ chính xác cao.</p>
+                    <p class="font-semibold">Máy kéo nén vạn năng 2000KN (Model: WE-1000B / TYE-2000)</p>
+                    <p class="text-white/70 mt-1">Thiết bị chủ lực dùng để thử nén bê tông, vữa xây dựng và thử kéo cốt thép. Máy được tích hợp hệ thống điều khiển kỹ thuật số giúp ghi lại biểu đồ lực chính xác tuyệt đối.</p>
                 </a>
                 <a href="{{ route('certificates') }}#maycatdat" class="block rounded-2xl border border-white/15 p-4 transition hover:border-white/40 hover:bg-white/5">
-                    <p class="font-semibold">Máy cắt đất ZJ</p>
-                    <p class="text-white/70 mt-1">Thiết bị chuyên dụng để xác định nhanh chóng và tin cậy các đặc trưng sức chống cắt của nền đất.</p>
+                    <p class="font-semibold">Máy xuyên tĩnh & Thiết bị nén CBR hiện trường</p>
+                    <p class="text-white/70 mt-1">Bộ thiết bị chuyên dụng đánh giá sức chịu tải của nền đất và cấp phối đá dăm ngay tại công trường. Đây là thiết bị quan trọng nhất để nghiệm thu phần nền móng cho các dự án giao thông.</p>
                 </a>
             </div>
         </div>
         <div class="rounded-[32px] bg-white/5 p-8 grid gap-5">
             <a href="{{ route('certificates') }}" class="block rounded-3xl bg-white/10 p-6 transition hover:bg-white/15">
                 <p class="text-xs uppercase tracking-[0.3em] text-white/60">Chứng chỉ</p>
-                <p class="mt-2 font-display text-2xl">ISO & LAS-XD 1109</p>
-                <p class="mt-2 text-white/70 text-sm">Hệ thống quản lý và năng lực phòng thí nghiệm theo phạm vi được cấp phép.</p>
+                <p class="mt-2 font-display text-2xl">Chứng nhận Năng lực thí nghiệm LAS-XD 980</p>
+                <p class="mt-2 text-white/70 text-sm">Phòng thí nghiệm Gia Nguyên được Bộ Xây dựng cấp mã số LAS-XD 980, đạt tiêu chuẩn quốc tế ISO/IEC 17025 (VILAS 264). Đây là bảo chứng cho năng lực thực hiện các phép thử chuyên ngành với độ chính xác và tính pháp lý cao nhất cho mọi công trình.</p>
             </a>
             <div class="rounded-3xl bg-white/10 p-6">
                 <p class="text-xs uppercase tracking-[0.3em] text-white/60">Cam kết</p>

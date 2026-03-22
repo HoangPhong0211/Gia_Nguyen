@@ -10,38 +10,37 @@
 
     <div class="mt-10 grid gap-8">
         <article class="rounded-3xl border border-black/10 bg-white p-7 shadow-soft">
-            <h2 class="text-3xl font-display">Khoan khảo sát địa chất</h2>
+            <h2 class="text-3xl font-display">Thí nghiệm Vật liệu & Cơ lý chuyên sâu</h2>
             <p class="mt-4 text-black/70 leading-7">
-                Dịch vụ khoan khảo sát địa chất được triển khai nhằm xác định chính xác điều kiện địa tầng, đặc trưng cơ lý của đất đá và các yếu tố
-                ảnh hưởng trực tiếp đến giải pháp nền móng. Quy trình thực hiện gồm khảo sát hiện trường, bố trí lỗ khoan theo nhiệm vụ thiết kế,
-                khoan lấy mẫu, thí nghiệm hiện trường và lập nhật ký kỹ thuật đầy đủ. Hoàng Gia Việt Nam sử dụng máy khoan XY-1 cùng hệ thống thiết bị
-                lấy mẫu đồng bộ để bảo đảm độ tin cậy của mẫu nguyên dạng và mẫu biến dạng. Dữ liệu được kiểm tra chéo với kết quả thí nghiệm phòng,
-                giúp kỹ sư thiết kế có cơ sở lựa chọn phương án móng phù hợp, tối ưu chi phí và kiểm soát rủi ro lún nứt. Hồ sơ bàn giao bao gồm mặt cắt
-                địa chất, chỉ tiêu cơ lý, nhận xét địa tầng và khuyến nghị kỹ thuật theo tiêu chuẩn áp dụng.
+                Gia Nguyên thực hiện kiểm định toàn diện các chỉ tiêu kỹ thuật của đất, đá, cát, xi măng và bê tông nhựa theo tiêu chuẩn LAS-XD 980. Chúng tôi đặc biệt chuyên sâu trong việc xác định các đặc tính cơ lý phức tạp cho nền đường và bê tông khối lớn, đảm bảo nguồn vật liệu đầu vào luôn đạt chuẩn chất lượng cao nhất cho công trình.
             </p>
         </article>
 
         <article class="rounded-3xl border border-black/10 bg-white p-7 shadow-soft">
-            <h2 class="text-3xl font-display">Khảo sát địa hình</h2>
+            <h2 class="text-3xl font-display">Thử nghiệm Kim loại & Liên kết hàn</h2>
             <p class="mt-4 text-black/70 leading-7">
-                Khảo sát địa hình là bước nền tảng cho công tác quy hoạch, thiết kế kỹ thuật và tổ chức thi công. Tổ khảo sát thực hiện đo đạc tọa độ,
-                cao độ, bình đồ khu vực và các điểm khống chế theo yêu cầu của dự án. Tùy đặc thù công trình, khối lượng có thể bao gồm đo mặt cắt,
-                kiểm tra mốc hiện trạng, lập bản đồ hiện trạng và số hóa dữ liệu để tích hợp vào hồ sơ thiết kế. Chúng tôi áp dụng quy trình nghiệm thu
-                nội bộ nhiều cấp nhằm bảo đảm sai số nằm trong giới hạn cho phép, đồng thời bàn giao tệp dữ liệu thuận tiện cho đơn vị tư vấn thiết kế.
-                Kết quả khảo sát địa hình giúp chủ đầu tư kiểm soát khối lượng san nền, tối ưu phương án tuyến và giảm xung đột kỹ thuật trong giai đoạn
-                triển khai thi công ngoài hiện trường.
+                Với hệ thống máy kéo nén vạn năng hiện đại, chúng tôi cung cấp dịch vụ thử nghiệm cường độ kéo, uốn cốt thép và kiểm tra chất lượng mối hàn chuyên nghiệp. Dịch vụ này giúp đánh giá chính xác khả năng chịu lực của kết cấu thép, đảm bảo tính an toàn và bền vững tuyệt đối cho các khung xương công trình dân dụng lẫn công nghiệp.
             </p>
         </article>
 
         <article class="rounded-3xl border border-black/10 bg-white p-7 shadow-soft">
-            <h2 class="text-3xl font-display">Thí nghiệm hiện trường, trong phòng và thí nghiệm VLXD</h2>
+            <h2 class="text-3xl font-display">Kiểm định & Thử tải hiện trường</h2>
             <p class="mt-4 text-black/70 leading-7">
-                Hoàng Gia Việt Nam triển khai đồng thời thí nghiệm hiện trường, thí nghiệm cơ lý trong phòng và thí nghiệm vật liệu xây dựng để tạo
-                chuỗi dữ liệu đầy đủ cho quá trình kiểm soát chất lượng. Đối với hiện trường, các phép thử được thực hiện theo quy trình chuẩn nhằm đánh
-                giá nhanh trạng thái nền đất và khả năng chịu tải. Đối với phòng thí nghiệm, mẫu được bảo quản, mã hóa và thử nghiệm trong điều kiện
-                kiểm soát để xác định các chỉ tiêu phục vụ tính toán kỹ thuật. Song song đó, công tác thí nghiệm vật liệu xây dựng giúp đánh giá chất
-                lượng đầu vào của bê tông, cốt liệu, vật liệu san lấp và các cấu kiện liên quan. Toàn bộ kết quả được tổng hợp thành báo cáo có truy vết,
-                kèm kết luận và kiến nghị để chủ đầu tư, nhà thầu và tư vấn giám sát ra quyết định kịp thời.
+                Chúng tôi có năng lực thực chiến mạnh mẽ trong việc thí nghiệm xuyên tĩnh, nén tĩnh cọc và đo mô đun đàn hồi bằng tấm ép cứng trực tiếp tại công trường. Đây là dịch vụ then chốt giúp kiểm soát chất lượng nền móng, đã được khẳng định qua nhiều dự án trọng điểm như Cao tốc Bắc - Nam và các nhà máy năng lượng tái tạo tại khu vực.
+            </p>
+        </article>
+
+        <article class="rounded-3xl border border-black/10 bg-white p-7 shadow-soft">
+            <h2 class="text-3xl font-display">Thí nghiệm Hóa học & Nước xây dựng</h2>
+            <p class="mt-4 text-black/70 leading-7">
+                Gia Nguyên cung cấp dịch vụ phân tích các chỉ tiêu hóa lý của nước dùng trong xây dựng và độ ăn mòn của môi trường đối với kết cấu. Chúng tôi giúp chủ đầu tư kiểm soát các tạp chất có hại, đảm bảo tính tương thích của nguồn nước với bê tông và vữa, từ đó kéo dài tuổi thọ tối đa cho công trình.
+            </p>
+        </article>
+        
+        <article class="rounded-3xl border border-black/10 bg-white p-7 shadow-soft">
+            <h2 class="text-3xl font-display">Tư vấn Giám định & Chứng nhận chất lượng</h2>
+            <p class="mt-4 text-black/70 leading-7">
+                Với đội ngũ kỹ sư giàu kinh nghiệm và hệ thống LAS-XD 980, chúng tôi thực hiện giám định tư pháp, đánh giá nguyên nhân sự cố và cấp chứng nhận chất lượng công trình. Dịch vụ này là cơ sở pháp lý vững chắc để khách hàng hoàn thiện hồ sơ nghiệm thu và đưa công trình vào vận hành an toàn.
             </p>
         </article>
     </div>

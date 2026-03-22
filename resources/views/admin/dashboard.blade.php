@@ -40,7 +40,19 @@
         <div style="margin-top: 15px; color: #f1c40f; font-size: 13px;">Xem chi tiết →</div>
     </a>
 
-    {{-- THÊM THẺ LIÊN HỆ TẠI ĐÂY --}}
+    {{-- THÊM THẺ CHỨNG CHỈ TẠI ĐÂY --}}
+    <a href="{{ route('admin.certificates.index') }}" class="card" style="border-top-color: #9b59b6;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div style="color: #7f8c8d; font-size: 12px; font-weight: bold; text-transform: uppercase;">Chứng chỉ</div>
+                <div style="font-size: 30px; font-weight: bold; margin-top: 5px;">{{ \App\Models\Certificate::count() }}</div>
+            </div>
+            <i class="fa fa-certificate" style="font-size: 40px; color: #9b59b6; opacity: 0.3;"></i>
+        </div>
+        <div style="margin-top: 15px; color: #9b59b6; font-size: 13px;">Quản lý hiệu chuẩn →</div>
+    </a>
+
+    {{-- Thẻ Liên hệ --}}
     <a href="{{ route('admin.contacts.index') }}" class="card" style="border-top-color: #e74c3c;">
         <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>

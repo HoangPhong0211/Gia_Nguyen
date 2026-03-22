@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CertificateController;
 use App\Models\Post;
 use App\Models\Service;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,7 @@ Route::get('/dich-vu', [ServiceController::class, 'index'])->name('services');
 Route::get('/dich-vu/{slug}', [ServiceController::class, 'show'])->name('services.show');
 Route::get('/du-an', [ProjectController::class, 'index'])->name('projects');
 Route::view('/doi-tac-khach-hang', 'partners')->name('partners');
-Route::view('/chung-chi', 'certificates')->name('certificates');
+Route::get('/chung-chi', [CertificateController::class, 'index'])->name('certificates');
 Route::get('/tin-tuc', [PostController::class, 'index'])->name('news');
 Route::get('/tin-tuc/{slug}', [PostController::class, 'show'])->name('posts.show');
 Route::get('/lien-he', function () {
@@ -73,9 +74,8 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class);
     Route::resource('services', \App\Http\Controllers\Admin\ServiceController::class);
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
-
+    Route::resource('certificates', \App\Http\Controllers\Admin\CertificateController::class);
     Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
-    
     Route::post('/contacts/{id}/status', [\App\Http\Controllers\Admin\ContactController::class, 'updateStatus'])->name('contacts.updateStatus');
 });
 Route::middleware('auth')->group(function () {

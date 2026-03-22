@@ -9,10 +9,9 @@ $title = 'Về chúng tôi';
     <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] items-center">
         <div class="space-y-4">
             <p class="text-sm uppercase tracking-[0.3em] text-black/50">Về chúng tôi</p>
-            <h1 class="text-4xl md:text-5xl font-display">Công ty Cổ phần Địa kỹ thuật Hoàng Gia Việt Nam</h1>
+            <h1 class="text-4xl md:text-5xl font-display">CÔNG TY TNHH XÂY DỰNG VÀ THƯƠNG MẠI GIA NGUYÊN</h1>
             <p class="text-black/70 text-lg">
-                Thành lập năm 2011, Hoàng Gia Việt Nam cung cấp dịch vụ khảo sát địa kỹ thuật, khảo sát địa hình,
-                thí nghiệm hiện trường - trong phòng và thí nghiệm vật liệu xây dựng với mã LAS-XD 1109.
+                Thành lập năm 2010, Gia Nguyên chuyên thí nghiệm LAS-XD 980 và kiểm định xây dựng. Chúng tôi cung cấp số liệu chuẩn xác cho các công trình hạ tầng và năng lượng trọng điểm.
             </p>
         </div>
         <figure class="rounded-3xl overflow-hidden border border-black/10 bg-white shadow-soft">
@@ -26,19 +25,19 @@ $title = 'Về chúng tôi';
     <div class="mx-auto w-full max-w-6xl px-5 py-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <div class="rounded-3xl bg-white p-6 border border-black/5">
             <p class="text-xs uppercase tracking-[0.3em] text-black/50">Tầm nhìn</p>
-            <p class="mt-3 text-black/70">Trở thành đơn vị địa kỹ thuật tin cậy hàng đầu trong phân khúc hạ tầng và công nghiệp.</p>
+            <p class="mt-3 text-black/70">Trở thành trung tâm kiểm định tin cậy và chuẩn xác hàng đầu khu vực.</p>
         </div>
         <div class="rounded-3xl bg-white p-6 border border-black/5">
             <p class="text-xs uppercase tracking-[0.3em] text-black/50">Sứ mệnh</p>
-            <p class="mt-3 text-black/70">Cung cấp dữ liệu chính xác, minh bạch, kịp thời để hỗ trợ quyết định kỹ thuật an toàn.</p>
+            <p class="mt-3 text-black/70">Cung cấp dữ liệu trung thực, bảo vệ chất lượng và sự bền vững của công trình.</p>
         </div>
         <div class="rounded-3xl bg-white p-6 border border-black/5">
             <p class="text-xs uppercase tracking-[0.3em] text-black/50">Năng lực cốt lõi</p>
-            <p class="mt-3 text-black/70">Khảo sát địa chất, khảo sát địa hình, thí nghiệm và kiểm định vật liệu.</p>
+            <p class="mt-3 text-black/70">Kết hợp giữa hệ thống VILAS 264, thiết bị hiện đại và đội ngũ kỹ sư thực chiến dày dạn kinh nghiệm.</p>
         </div>
         <div class="rounded-3xl bg-white p-6 border border-black/5">
             <p class="text-xs uppercase tracking-[0.3em] text-black/50">Sơ đồ tổ chức</p>
-            <p class="mt-3 text-black/70">Khối khảo sát, khối thí nghiệm, khối QA/QC và bộ phận kỹ thuật hồ sơ vận hành đồng bộ.</p>
+            <p class="mt-3 text-black/70">Vận hành tinh gọn: Ban Giám đốc trực tiếp quản lý phòng Kỹ thuật và bộ phận Kiểm soát chất lượng hiện trường.</p>
         </div>
     </div>
 </section>
