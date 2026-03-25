@@ -1,46 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="mx-auto w-full max-w-4xl px-5 py-16">
-        <div class="space-y-4">
-            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Tin tức</p>
-            <h1 class="text-4xl md:text-5xl font-display">{{ $post->title }}</h1>
-            <p class="text-black/60">
-                Cập nhật: {{ optional($post->updated_at)->format('d/m/Y') ?? '16/03/2026' }} · {{ $post->views }} lượt xem
-            </p>
-        </div>
+{{-- BREADCRUMB --}}
+<div class="bg-slate-50 py-4 border-b border-slate-100">
+    <div class="mx-auto max-w-7xl px-5 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+        <a href="/" class="hover:text-navy">Trang chủ</a> 
+        <span class="mx-2">/</span> 
+        <a href="{{ route('news') }}" class="hover:text-navy">Tin tức</a>
+        <span class="mx-2 text-orange">/</span> 
+        {{-- SỬA: title -> post_title --}}
+        <span class="text-navy italic line-clamp-1 inline-block max-w-[200px] align-bottom">{{ $post->post_title }}</span>
+    </div>
+</div>
 
-        @if ($post->featured_image)
-            @php
-                $img = $post->featured_image;
-                // Xử lý đường dẫn: Nếu là URL hoặc đã có 'images/' thì dùng asset(), ngược lại thêm 'images/'
-                $src = (str_starts_with($img, 'http') || str_contains($img, 'images/'))
-                    ? asset($img)
-                    : asset('images/' . $img);
-            @endphp
-            <img src="{{ $src }}" alt="{{ $post->title }}" class="mt-8 aspect-[16/9] w-full rounded-3xl object-cover shadow-lg"
-                onerror="this.onerror=null;this.src='{{ asset('images/main-logo.png') }}';">
-        @else
-            <div class="mt-8 aspect-[16/9] rounded-3xl bg-[linear-gradient(120deg,_#f3d3bf,_#f9f2e7)]"></div>
-        @endif
-
-        <div class="prose max-w-none mt-10 text-black/70 leading-relaxed">
-            @if ($post->excerpt)
-                <p class="text-lg font-medium text-black/80 mb-6 border-l-4 border-brand pl-4">
-                    {{ $post->excerpt }}
-                </p>
-            @endif
-
-            {{-- Phần nội dung chính --}}
-            <div class="content-body">
-                {!! nl2br(e($post->content)) !!}
+<section class="py-16 bg-white">
+    <div class="mx-auto max-w-4xl px-5">
+        {{-- HEADER --}}
+        <div class="mb-12 text-center">
+            {{-- SỬA: title -> post_title --}}
+            <h1 class="text-3xl md:text-5xl font-black text-navy uppercase leading-tight mb-6">
+                {{ $post->post_title }}
+            </h1>
+            <div class="flex items-center justify-center gap-6 text-slate-400 text-[11px] font-bold uppercase tracking-widest">
+                <span><i class="fa-regular fa-calendar-check mr-2 text-orange"></i>{{ $post->created_at->format('d/m/Y') }}</span>
+                <span><i class="fa-regular fa-user mr-2 text-orange"></i>Admin Gia Nguyên</span>
             </div>
         </div>
 
-        <div class="mt-16 pt-8 border-t border-black/5">
-            <a href="{{ url('/tin-tuc') }}" class="text-brand font-semibold hover:underline">
-                ← Quay lại góc tin tức
+        {{-- FEATURED IMAGE --}}
+        {{-- SỬA: featured_image -> post_image --}}
+        @if($post->post_image)
+        <div class="mb-16 rounded-[2.5rem] overflow-hidden shadow-2xl border-8 border-slate-50">
+            <img src="{{ asset('images/' . $post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-auto">
+        </div>
+        @endif
+
+        {{-- MAIN CONTENT --}}
+        <article class="prose prose-slate max-w-none prose-img:rounded-3xl prose-headings:text-navy prose-headings:font-black">
+            <div class="content-rich-text leading-relaxed text-slate-600 text-lg">
+                {{-- SỬA: content -> post_content --}}
+                {!! $post->content !!}
+            </div>
+        </article>
+
+        {{-- FOOTER --}}
+        <div class="mt-20 pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
+            <a href="{{ route('news') }}" class="text-[11px] font-black uppercase text-slate-400 hover:text-orange flex items-center gap-3 transition-all">
+                <i class="fa-solid fa-arrow-left-long"></i> Quay lại danh sách tin
             </a>
         </div>
-    </section>
+    </div>
+</section>
+
+<style>
+    .content-rich-text table { width: 100% !important; border-collapse: collapse; margin: 2rem 0; border: 1px solid #e2e8f0; }
+    .content-rich-text th, .content-rich-text td { padding: 1rem; border: 1px solid #e2e8f0; font-size: 0.9rem; }
+    .content-rich-text th { background: #f8fafc; font-weight: 800; color: #003366; }
+</style>
 @endsection

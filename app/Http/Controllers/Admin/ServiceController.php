@@ -11,6 +11,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
+        // Lấy danh sách mới nhất để Admin dễ quản lý
         $services = Service::latest()->get();
         return view('admin.services.index', compact('services'));
     }
@@ -20,28 +21,49 @@ class ServiceController extends Controller
         return view('admin.services.create');
     }
 
+    // Hàm show này thường dành cho Admin xem trước, hoặc bạn có thể xóa nếu không dùng
+    public function show($id)
+    {
+        $service = Service::findOrFail($id);
+        return view('admin.services.show', compact('service'));
+    }
+
     public function store(Request $request)
     {
-        $request->validate(['title' => 'required|max:255']);
+        // 1. Validate dữ liệu
+        $request->validate([
+            'title' => 'required|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+        ]);
 
-        // 1. Lưu thông tin cơ bản và gán vào biến $service
-        $service = Service::create([
+        // 2. Xử lý Slug để tránh lỗi Duplicate entry 1062
+        $slug = Str::slug($request->title);
+        $originalSlug = $slug;
+        $count = 1;
+        while (Service::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+
+        // 3. Xử lý upload ảnh
+        $filename = null;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+            // Lưu theo định dạng đường dẫn có sẵn trong DB của bạn
+            $filename = '/images/' . $filename;
+        }
+
+        // 4. Lưu vào Database (Dùng đúng tên cột featured_image)
+        Service::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => $slug,
             'summary' => $request->summary,
             'description' => $request->description,
             'status' => $request->status ?? 'published',
+            'featured_image' => $filename, // Đã sửa từ 'image' thành 'featured_image'
+            'sort_order' => $request->sort_order ?? 0,
         ]);
-
-        // 2. Xử lý ảnh và CẬP NHẬT vào database
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images'), $filename);
-
-            // PHẢI CÓ DÒNG NÀY ĐỂ LƯU VÀO DB
-            $service->update(['image' => $filename]);
-        }
 
         return redirect()->route('admin.services.index')->with('success', 'Thêm dịch vụ thành công!');
     }
@@ -55,36 +77,63 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         $service = Service::findOrFail($id);
-        $request->validate(['title' => 'required|max:255']);
-
-        $service->update([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'summary' => $request->summary,
-            'description' => $request->description,
-            'status' => $request->status,
+        
+        $request->validate([
+            'title' => 'required|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
         ]);
 
-        if ($request->hasFile('image')) {
-            // Xóa ảnh cũ để tránh rác server
-            if ($service->image && file_exists(public_path('images/' . $service->image))) {
-                unlink(public_path('images/' . $service->image));
+        // Cập nhật thông tin cơ bản
+        $service->title = $request->title;
+        $service->summary = $request->summary;
+        $service->description = $request->description;
+        $service->status = $request->status;
+        
+        // Chỉ cập nhật slug nếu title thay đổi
+        if ($service->isDirty('title')) {
+            $slug = Str::slug($request->title);
+            $originalSlug = $slug;
+            $count = 1;
+            while (Service::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+                $slug = $originalSlug . '-' . $count++;
             }
-
-            $file = $request->file('image');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images'), $filename);
-
-            // CẬP NHẬT TÊN ẢNH MỚI VÀO DB
-            $service->update(['image' => $filename]);
+            $service->slug = $slug;
         }
 
-        return redirect()->route('admin.services.index')->with('success', 'Cập nhật thành công!');
+        // Xử lý ảnh mới nếu có
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $filename);
+
+            // Xóa ảnh cũ nếu cần (tùy chọn)
+            if ($service->featured_image && file_exists(public_path($service->featured_image))) {
+                // Tránh xóa các ảnh mẫu mặc định
+                if (!str_contains($service->featured_image, 'card-image')) {
+                    @unlink(public_path($service->featured_image));
+                }
+            }
+
+            $service->featured_image = '/images/' . $filename;
+        }
+
+        $service->save();
+
+        return redirect()->route('admin.services.index')->with('success', 'Cập nhật dịch vụ thành công!');
     }
 
     public function destroy($id)
     {
-        Service::findOrFail($id)->delete();
+        $service = Service::findOrFail($id);
+        
+        // Xóa file ảnh trước khi xóa bản ghi
+        if ($service->featured_image && file_exists(public_path($service->featured_image))) {
+            if (!str_contains($service->featured_image, 'card-image')) {
+                @unlink(public_path($service->featured_image));
+            }
+        }
+
+        $service->delete();
         return redirect()->route('admin.services.index')->with('success', 'Đã xóa dịch vụ.');
     }
 }

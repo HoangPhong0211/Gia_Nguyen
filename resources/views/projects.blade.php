@@ -19,10 +19,24 @@
          @keydown.escape.window="modalOpen = false">
         
         <div class="flex flex-wrap gap-3">
-            <button @click="tab = 'transport'" :class="tab === 'transport' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Giao thông Trọng điểm</button>
-            <button @click="tab = 'energy'" :class="tab === 'energy' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Năng lượng Tái tạo</button>
-            <button @click="tab = 'civil'" :class="tab === 'civil' ? 'bg-brand text-white' : 'bg-white'" class="rounded-full border border-black/15 px-5 py-2 font-semibold transition">Dân dụng & Thủy lợi</button>
-        </div>
+    <button @click="tab = 'transport'" 
+        :class="tab === 'transport' ? 'bg-navy text-white' : 'bg-white text-navy'" 
+        class="rounded-full border border-navy/20 px-6 py-2.5 font-bold uppercase text-[11px] tracking-widest transition-all shadow-sm">
+        Giao thông Trọng điểm
+    </button>
+    
+    <button @click="tab = 'energy'" 
+        :class="tab === 'energy' ? 'bg-navy text-white' : 'bg-white text-navy'" 
+        class="rounded-full border border-navy/20 px-6 py-2.5 font-bold uppercase text-[11px] tracking-widest transition-all shadow-sm">
+        Năng lượng & Công nghiệp
+    </button>
+    
+    <button @click="tab = 'civil'" 
+        :class="tab === 'civil' ? 'bg-navy text-white' : 'bg-white text-navy'" 
+        class="rounded-full border border-navy/20 px-6 py-2.5 font-bold uppercase text-[11px] tracking-widest transition-all shadow-sm">
+        Dân dụng & Hạ tầng
+    </button>
+</div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
             

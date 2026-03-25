@@ -1,34 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers; // Đảm bảo dòng này đúng
 
 use App\Models\Post;
+use App\Http\Controllers\Controller; // THIẾU DÒNG NÀY
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::query()
-            ->where('status', 'published')
-            ->orderByDesc('created_at')
-            ->paginate(6); 
-
-        return view('news', [
-            'posts' => $posts,
-        ]);
+        $posts = Post::latest()->paginate(9);
+        $category = (object)['name' => 'Tất cả tin tức']; 
+    
+        return view('news', compact('posts', 'category'));
     }
 
-    public function show(string $slug)
+    public function show($slug)
     {
-        $post = Post::query()
-            ->where('slug', $slug)
-            ->firstOrFail();
+        // SỬA DÒNG NÀY: Dùng firstOrFail() thay vì first()
+        $post = Post::where('slug', $slug)->firstOrFail();
 
-        $post->increment('views');
-
-        return view('post', [
-            'post' => $post,
-        ]);
+        return view('post', compact('post'));
     }
 }

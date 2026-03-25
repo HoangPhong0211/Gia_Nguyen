@@ -1,98 +1,101 @@
 @extends('layouts.app')
 
 @section('content')
-    @php
-        $title = 'Chứng chỉ hiệu chuẩn thiết bị';
-    @endphp
+{{-- 1. HERO SECTION --}}
+<section class="relative py-20 bg-navy overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div class="mx-auto max-w-7xl px-5 text-center relative z-10">
+        <span class="inline-block px-4 py-1.5 bg-orange/10 border border-orange/20 text-orange text-[11px] font-black uppercase tracking-[0.2em] rounded-full mb-6">
+            Năng lực pháp lý & Quản lý chất lượng
+        </span>
+        <h1 class="text-4xl md:text-6xl font-black text-white uppercase leading-tight tracking-tight">
+            Chứng chỉ <span class="text-orange">&</span> Giấy phép
+        </h1>
+        <p class="mt-6 text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+            Hệ thống văn bằng, chứng chỉ công nhận năng lực thí nghiệm chuyên ngành xây dựng mã số LAS-XD 980 của Gia Nguyên.
+        </p>
+    </div>
+</section>
 
-    <section class="mx-auto w-full max-w-6xl px-5 py-16">
-        <div class="space-y-4 max-w-4xl">
-            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Chứng chỉ</p>
-            <h1 class="text-4xl md:text-5xl font-display uppercase">Chứng chỉ hiệu chuẩn thiết bị</h1>
-            <p class="text-black/70">Dưới đây là danh sách các giấy chứng nhận hiệu chuẩn thiết bị thí nghiệm của Gia Nguyên (LAS-XD 980), được cập nhật mới nhất từ hệ thống quản lý.</p>
-        </div>
-
-        {{-- NÚT BẤM NHẢY LINK (DỮ LIỆU TỪ ADMIN) --}}
-        <div class="mt-8 flex flex-wrap gap-3">
-            @foreach($certificates as $cert)
-                <a href="#{{ $cert->slug }}"
-                    class="rounded-full border border-black/15 bg-white px-5 py-2 font-semibold hover:bg-gray-50 transition-colors">
-                    {{ $cert->name }}
-                </a>
-            @endforeach
-        </div>
-
-        {{-- NỘI DUNG CHI TIẾT (DỮ LIỆU TỪ ADMIN) --}}
-        <div class="mt-10 space-y-8">
-            @forelse($certificates as $cert)
-                <article id="{{ $cert->slug }}" class="rounded-3xl border border-black/10 bg-white p-6 shadow-soft scroll-mt-24">
-                    <h2 class="text-3xl font-display">{{ $cert->name }}</h2>
-                    <p class="mt-3 text-black/70">
-                        @if($cert->serial_number)
-                            Giấy chứng nhận hiệu chuẩn số <strong>{{ $cert->serial_number }}</strong>.
-                        @endif
-                        Cấp ngày: {{ $cert->issue_date ? $cert->issue_date->format('d/m/Y') : 'Đang cập nhật' }}
-                    </p>
-                    
-                    @if($cert->description)
-                        <p class="mt-2 text-sm text-black/50 italic">{{ $cert->description }}</p>
-                    @endif
-
-                    <div class="mt-5 grid gap-4 md:grid-cols-2">
-                        {{-- Trang 1 --}}
-                        <div class="overflow-hidden rounded-2xl border border-black/10">
-                            <img src="{{ asset('storage/' . $cert->image_front) }}" 
-                                 alt="Trang 1 - {{ $cert->name }}"
-                                 class="w-full object-cover hover:scale-105 transition duration-500">
+{{-- 2. GRID DANH SÁCH CHỨNG CHỈ --}}
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-5">
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            @forelse ($certificates as $cert)
+                <article class="group bg-white rounded-[2.5rem] p-5 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                    {{-- Khung ảnh chứng chỉ (Khổ đứng A4) --}}
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-[1.8rem] bg-slate-50 border border-slate-200">
+                        <img src="{{ asset($cert->image ?? 'images/no-image.jpg') }}" 
+                             alt="{{ $cert->name }}" 
+                             class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-700">
+                        
+                        {{-- Overlay khi hover --}}
+                        <div class="absolute inset-0 bg-navy/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
+                            <a href="{{ asset($cert->image) }}" target="_blank" class="w-14 h-14 bg-orange text-white flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition-transform mb-4">
+                                <i class="fa-solid fa-expand text-xl"></i>
+                            </a>
+                            <span class="text-[10px] font-black text-white uppercase tracking-widest">Phóng to ảnh</span>
                         </div>
+                    </div>
 
-                        {{-- Trang 2 (Nếu có) --}}
-                        @if($cert->image_back)
-                            <div class="overflow-hidden rounded-2xl border border-black/10">
-                                <img src="{{ asset('storage/' . $cert->image_back) }}" 
-                                     alt="Trang 2 - {{ $cert->name }}"
-                                     class="w-full object-cover hover:scale-105 transition duration-500">
-                            </div>
+                    {{-- Thông tin chứng chỉ --}}
+                    <div class="mt-8 px-2">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="h-[2px] w-6 bg-orange"></span>
+                            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                                {{ $cert->created_at->format('Y') }}
+                            </span>
+                        </div>
+                        <h3 class="text-base font-black text-navy uppercase leading-tight group-hover:text-orange transition-colors line-clamp-2 min-h-[3rem]">
+                            {{ $cert->name }}
+                        </h3>
+                        
+                        @if($cert->description)
+                        <div class="mt-4 pt-4 border-t border-slate-50 text-[13px] text-slate-500 line-clamp-2 italic">
+                            {!! strip_tags($cert->description) !!}
+                        </div>
                         @endif
                     </div>
                 </article>
             @empty
-                <div class="py-20 text-center border-2 border-dashed border-black/10 rounded-3xl">
-                    <p class="text-black/40 italic">Chưa có dữ liệu chứng chỉ nào được tải lên.</p>
+                <div class="col-span-full py-24 text-center">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-slate-50 rounded-full mb-6">
+                        <i class="fa-solid fa-file-signature text-slate-300 text-3xl"></i>
+                    </div>
+                    <p class="text-slate-400 italic font-bold uppercase tracking-widest">
+                        Dữ liệu chứng chỉ đang được cập nhật...
+                    </p>
                 </div>
             @endforelse
         </div>
-    </section>
 
-    {{-- Nút cuộn lên đầu trang (Giữ nguyên của bạn) --}}
-    <button id="back-to-top"
-        class="fixed bottom-6 right-6 z-50 hidden h-12 w-12 items-center justify-center rounded-full border border-black/20 bg-white/95 text-brand shadow-soft transition hover:-translate-y-0.5 hover:bg-white"
-        aria-label="Cuộn lên đầu trang">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path fill-rule="evenodd"
-                d="M10 3.5a1 1 0 0 1 .707.293l5 5a1 1 0 1 1-1.414 1.414L11 6.914V16a1 1 0 1 1-2 0V6.914L5.707 10.207a1 1 0 1 1-1.414-1.414l5-5A1 1 0 0 1 10 3.5Z"
-                clip-rule="evenodd" />
-        </svg>
-    </button>
+        {{-- 3. THANH PHÂN TRANG --}}
+        <div class="mt-20 flex justify-center">
+            <div class="pagination-custom">
+                {{ $certificates->links() }}
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const backToTopButton = document.getElementById('back-to-top');
-            if (!backToTopButton) return;
-
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 300) {
-                    backToTopButton.classList.remove('hidden');
-                    backToTopButton.classList.add('flex');
-                } else {
-                    backToTopButton.classList.remove('flex');
-                    backToTopButton.classList.add('hidden');
-                }
-            });
-
-            backToTopButton.addEventListener('click', function () {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-    </script>
+{{-- 4. CSS BỔ TRỢ ĐỂ NÚT PHÂN TRANG KHÔNG BỊ TO --}}
+<style>
+    .pagination-custom svg {
+        width: 1.5rem;
+        display: inline;
+    }
+    .pagination-custom nav div:first-child {
+        display: none;
+    }
+    .pagination-custom nav div:last-child {
+        box-shadow: none !important;
+    }
+    .pagination-custom span, .pagination-custom a {
+        border-radius: 0.75rem !important;
+        margin: 0 4px;
+        font-weight: 800;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+</style>
 @endsection

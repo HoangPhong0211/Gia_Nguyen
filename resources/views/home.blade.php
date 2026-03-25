@@ -1,258 +1,231 @@
 ﻿@extends('layouts.app')
 
-@section('content')
 @php
-$heroSlides = [
-['/images/Picture1.png', 'Khảo sát địa kỹ thuật công trình'],
-['/images/Picture2.png', 'Thí nghiệm hiện trường và trong phòng'],
-['/images/Picture3.png', 'Tư vấn giải pháp nền móng và hạ tầng'],
-['/images/Picture4.png', 'Kiểm định vật liệu xây dựng'],
-];
+    // Dữ liệu Dịch vụ
+    $featuredServices = [
+        [
+            'title' => 'Thí nghiệm Vật liệu',
+            'desc' => 'Kiểm tra chỉ tiêu cơ lý của Xi măng, cát, đá, gạch, ngói, vữa và bê tông nhựa.',
+            'icon' => 'fa-vial-flask'
+        ],
+        [
+            'title' => 'Địa chất công trình',
+            'desc' => 'Xác định độ chặt K, thí nghiệm CBR, nén lún và các chỉ tiêu cơ lý đất hiện trường.',
+            'icon' => 'fa-mountain-sun'
+        ],
+        [
+            'title' => 'Kiểm định chất lượng',
+            'desc' => 'Thử tải nền đường, kiểm định chất lượng bê tông bằng phương pháp không phá hủy.',
+            'icon' => 'fa-clipboard-check'
+        ],
+    ];
 
-$featuredServices = [
-[
-'title' => 'Thí nghiệm Vật liệu Xây dựng',
-'desc' => 'Kiểm tra chỉ tiêu cơ lý của Xi măng, cốt liệu (cát, đá), gạch, ngói, vữa và bê tông nhựa.',
-],
-[
-'title' => 'Thí nghiệm Đất & Nền móng',
-'desc' => 'Xác định độ chặt K, thí nghiệm CBR, nén lún, cắt cánh và các chỉ tiêu cơ lý đất hiện trường.',
-],
-[
-'title' => 'Thí nghiệm Kim loại & Mối hàn',
-'desc' => 'Kiểm tra cường độ kéo, uốn của thép thanh, thép hình và chất lượng các mối hàn liên kết.',
-],
-[
-'title' => 'Kiểm định & Quan trắc công trình',
-'desc' => 'Thử tải nền đường, kiểm định chất lượng bê tông bằng phương pháp không phá hủy (súng bật nẩy, siêu âm).',
-],
-];
+    // Dữ liệu Dự án tiêu biểu (Lấy từ DB nếu bạn đã làm phần Admin)
+    $featuredProjects = \App\Models\Project::latest()->limit(4)->get();
 
-$featuredProjects = [
-['Cầu Kim Liên', '/images/Picture5.png'],
-['Nhà máy Up Shine Lighting', '/images/Picture6.png'],
-['Dự án pin TOPCON BOVIET', '/images/Picture7.png'],
-['Cầu sông Hương', '/images/Picture8.png'],
-];
+    // Dữ liệu Tin tức (Lấy từ DB)
+    $latestPosts = \App\Models\Post::where('status', 'published')->latest()->limit(3)->get();
 @endphp
 
-<section class="relative overflow-hidden border-b border-black/10">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(208,114,45,0.2),_transparent_60%)]"></div>
-    <div class="relative mx-auto w-full max-w-6xl px-5 py-14 lg:py-20">
-        <div class="space-y-5 max-w-3xl">
-            <p class="text-sm uppercase tracking-[0.3em] text-black/60">Công ty TNHH Xây dựng và Thương mại Gia Nguyên</p>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-display">CÔNG TY TNHH XÂY DỰNG VÀ THƯƠNG MẠI GIA NGUYÊN: <span class="whitespace-nowrap">Chất lượng khẳng định - Công trình bền vững.</span></h1>
-            <p class="text-base md:text-lg text-black/70">
-                Thành lập từ năm 2010, Công ty Gia Nguyên tự hào sở hữu phòng thí nghiệm chuyên ngành xây dựng mã số LAS-XD 980. Chúng tôi chuyên cung cấp các dịch vụ thí nghiệm vật liệu, kiểm định chất lượng và tư vấn kỹ thuật, cam kết đồng hành cùng quý khách hàng tạo nên những công trình hạ tầng, năng lượng và dân dụng đạt tiêu chuẩn quốc gia.
-            </p>
-            <div class="flex flex-wrap gap-3 text-sm font-medium">
-                <span class="rounded-full bg-white px-4 py-2 border border-black/10">Chính xác</span>
-                <span class="rounded-full bg-white px-4 py-2 border border-black/10">An toàn</span>
-                <span class="rounded-full bg-white px-4 py-2 border border-black/10">Hiệu quả</span>
-                <span class="rounded-full bg-white px-4 py-2 border border-black/10">Bền vững</span>
-            </div>
+@section('content')
+    {{-- 1. HERO BANNER --}}
+    <section class="relative h-[90vh] flex items-center bg-navy overflow-hidden slant-bottom">
+        <div class="absolute inset-0">
+            <img src="/images/Picture1.png" class="w-full h-full object-cover opacity-30 zoom-in" alt="Gia Nguyễn Banner">
+            <div class="absolute inset-0 bg-gradient-to-r from-navy-dark via-navy-dark/80 to-transparent"></div>
         </div>
 
-        <div class="mt-8 overflow-x-auto no-scrollbar">
-            <div class="flex gap-4 min-w-max">
-                @foreach ($heroSlides as [$image, $caption])
-                <article class="w-[80vw] max-w-[560px] rounded-3xl overflow-hidden border border-black/10 bg-white shadow-soft">
-                    <img src="{{ $image }}" alt="{{ $caption }}" class="aspect-[16/9] w-full object-cover">
-                    <p class="p-4 text-sm font-medium">{{ $caption }}</p>
-                </article>
-                @endforeach
-            </div>
-        </div>
-
-        <div class="mt-8 flex flex-wrap gap-4">
-            <a href="/dich-vu" class="inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 text-white font-semibold">Xem lĩnh vực hoạt động</a>
-            <a href="/lien-he" class="inline-flex items-center justify-center rounded-full border border-black/20 px-6 py-3 font-semibold">Liên hệ nhận hồ sơ năng lực</a>
-        </div>
-    </div>
-</section>
-
-<section class="mx-auto w-full max-w-6xl px-5 py-14">
-    <div class="flex items-end justify-between gap-6">
-        <div>
-            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Dịch vụ / Lĩnh vực hoạt động</p>
-            <h2 class="text-3xl md:text-4xl font-display">Dịch vụ nổi bật</h2>
-        </div>
-    </div>
-    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        @foreach ($featuredServices as $service)
-        <article class="rounded-3xl border border-black/10 bg-white p-6 shadow-soft">
-            <div class="h-11 w-11 rounded-2xl bg-brand/15 grid place-items-center text-brand font-semibold">{{ $loop->iteration }}</div>
-            <h3 class="mt-4 text-xl font-display">{{ $service['title'] }}</h3>
-            <p class="mt-3 text-sm text-black/70">{{ $service['desc'] }}</p>
-        </article>
-        @endforeach
-    </div>
-</section>
-
-<section class="bg-[color:var(--color-ink)] text-white">
-    <div class="mx-auto w-full max-w-6xl px-5 py-16 grid gap-10 lg:grid-cols-[1fr_1fr] items-center">
-        <div class="space-y-4">
-            <p class="text-sm uppercase tracking-[0.3em] text-white/60">Năng lực thiết bị</p>
-            <h2 class="text-3xl md:text-4xl font-display">Thiết bị và chứng nhận nổi bật</h2>
-            <p class="text-white/70">
-                Hệ thống Kiểm định và Thí nghiệm chuyên ngành LAS-XD 980, tập hợp các thiết bị đo lường và thử nghiệm hiện đại, được hiệu chuẩn định kỳ bởi các đơn vị uy tín, đảm bảo mọi kết quả thí nghiệm đều chính xác, khách quan và tuân thủ nghiêm ngặt tiêu chuẩn ISO/IEC 17025.
-            </p>
-            <div class="grid gap-4 text-sm">
-                <a href="{{ route('certificates') }}#xy1" class="block rounded-2xl border border-white/15 p-4 transition hover:border-white/40 hover:bg-white/5">
-                    <p class="font-semibold">Máy kéo nén vạn năng 2000KN (Model: WE-1000B / TYE-2000)</p>
-                    <p class="text-white/70 mt-1">Thiết bị chủ lực dùng để thử nén bê tông, vữa xây dựng và thử kéo cốt thép. Máy được tích hợp hệ thống điều khiển kỹ thuật số giúp ghi lại biểu đồ lực chính xác tuyệt đối.</p>
-                </a>
-                <a href="{{ route('certificates') }}#maycatdat" class="block rounded-2xl border border-white/15 p-4 transition hover:border-white/40 hover:bg-white/5">
-                    <p class="font-semibold">Máy xuyên tĩnh & Thiết bị nén CBR hiện trường</p>
-                    <p class="text-white/70 mt-1">Bộ thiết bị chuyên dụng đánh giá sức chịu tải của nền đất và cấp phối đá dăm ngay tại công trường. Đây là thiết bị quan trọng nhất để nghiệm thu phần nền móng cho các dự án giao thông.</p>
-                </a>
-            </div>
-        </div>
-        <div class="rounded-[32px] bg-white/5 p-8 grid gap-5">
-            <a href="{{ route('certificates') }}" class="block rounded-3xl bg-white/10 p-6 transition hover:bg-white/15">
-                <p class="text-xs uppercase tracking-[0.3em] text-white/60">Chứng chỉ</p>
-                <p class="mt-2 font-display text-2xl">Chứng nhận Năng lực thí nghiệm LAS-XD 980</p>
-                <p class="mt-2 text-white/70 text-sm">Phòng thí nghiệm Gia Nguyên được Bộ Xây dựng cấp mã số LAS-XD 980, đạt tiêu chuẩn quốc tế ISO/IEC 17025 (VILAS 264). Đây là bảo chứng cho năng lực thực hiện các phép thử chuyên ngành với độ chính xác và tính pháp lý cao nhất cho mọi công trình.</p>
-            </a>
-            <div class="rounded-3xl bg-white/10 p-6">
-                <p class="text-xs uppercase tracking-[0.3em] text-white/60">Cam kết</p>
-                <p class="mt-2 font-display text-2xl">Chính xác - An toàn - Hiệu quả - Bền vững</p>
-                <p class="mt-2 text-white/70 text-sm">Bộ tiêu chí xuyên suốt trong mọi hoạt động khảo sát và thí nghiệm.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="mx-auto w-full max-w-6xl px-5 py-16">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <div>
-            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Dự án tiêu biểu</p>
-            <h2 class="text-3xl md:text-4xl font-display">Các công trình đã thực hiện</h2>
-        </div>
-        <a href="/du-an" class="text-sm font-semibold text-brand">Xem tất cả dự án</a>
-    </div>
-    <div class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        @foreach ($featuredProjects as [$projectName, $image])
-        <button
-            type="button"
-            class="group rounded-3xl overflow-hidden bg-white border border-black/10 shadow-soft text-left"
-            data-project-image="{{ $image }}"
-            data-project-name="{{ $projectName }}"
-            aria-label="Xem ảnh lớn dự án {{ $projectName }}">
-            <img src="{{ $image }}" alt="{{ $projectName }}" class="aspect-[4/3] w-full object-cover transition duration-300 group-hover:scale-[1.02]">
-            <div class="p-4">
-                <h3 class="font-display text-xl">{{ $projectName }}</h3>
-                <p class="mt-2 text-sm text-black/60">Bấm để xem ảnh lớn</p>
-            </div>
-        </button>
-        @endforeach
-    </div>
-
-    <div id="project-image-modal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4 sm:p-6">
-        <button type="button" class="absolute inset-0 bg-black/75" data-project-close aria-label="Đóng xem ảnh"></button>
-        <div class="relative z-10 w-full max-w-5xl rounded-2xl bg-white p-2 shadow-2xl">
-            <button
-                type="button"
-                class="absolute right-3 top-3 h-10 w-10 rounded-full bg-black/75 text-white text-2xl leading-none"
-                data-project-close
-                aria-label="Đóng">
-                &times;
-            </button>
-            <img id="project-image-modal-img" src="" alt="" class="max-h-[80vh] w-full rounded-xl object-contain bg-black/5">
-            <p id="project-image-modal-caption" class="px-3 py-2 text-sm text-black/70"></p>
-        </div>
-    </div>
-</section>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById('project-image-modal');
-        const modalImage = document.getElementById('project-image-modal-img');
-        const modalCaption = document.getElementById('project-image-modal-caption');
-        const openButtons = document.querySelectorAll('[data-project-image]');
-        const closeButtons = document.querySelectorAll('[data-project-close]');
-
-        if (!modal || !modalImage || !modalCaption || openButtons.length === 0) {
-            return;
-        }
-
-        const openModal = function(image, name) {
-            modalImage.src = image;
-            modalImage.alt = name;
-            modalCaption.textContent = name;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.classList.add('overflow-hidden');
-        };
-
-        const closeModal = function() {
-            modal.classList.remove('flex');
-            modal.classList.add('hidden');
-            modalImage.src = '';
-            modalImage.alt = '';
-            modalCaption.textContent = '';
-            document.body.classList.remove('overflow-hidden');
-        };
-
-        openButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                openModal(button.dataset.projectImage, button.dataset.projectName);
-            });
-        });
-
-        closeButtons.forEach(function(button) {
-            button.addEventListener('click', closeModal);
-        });
-
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && modal.classList.contains('flex')) {
-                closeModal();
-            }
-        });
-    });
-</script>
-
-<section class="mx-auto w-full max-w-6xl px-5 py-16">
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <div>
-            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Góc tin tức</p>
-            <h2 class="text-3xl md:text-4xl font-display">Bài viết mới nhất</h2>
-        </div>
-        <a href="/tin-tuc" class="text-sm font-semibold text-brand">Xem tất cả</a>
-    </div>
-    <div class="mt-8 grid gap-6 md:grid-cols-3">
-        @forelse ($latestPosts ?? [] as $item)
-        <a href="{{ route('posts.show', $item->slug) }}" class="rounded-3xl border border-black/10 bg-white overflow-hidden shadow-soft">
-            {{-- SỬA LOGIC HIỂN THỊ ẢNH TẠI ĐÂY --}}
-            @if ($item->featured_image)
-                @php
-                    $img = $item->featured_image;
-                    // Kiểm tra nếu là URL hoặc chứa 'images/' thì dùng asset() trực tiếp, ngược lại thêm 'images/'
-                    $imagePath = (str_starts_with($img, 'http') || str_contains($img, 'images/')) 
-                                 ? asset($img) 
-                                 : asset('images/' . $img);
-                @endphp
-                <img src="{{ $imagePath }}" 
-                     alt="{{ $item->title }}" 
-                     class="aspect-[4/3] w-full object-cover transition duration-300 hover:scale-105"
-                     onerror="this.onerror=null;this.src='{{ asset('images/main-logo.png') }}';">
-            @else
-                <div class="aspect-[4/3] bg-[linear-gradient(120deg,_#f3d3bf,_#f9f2e7)] flex items-center justify-center">
-                    <i class="fa fa-image text-black/10 text-4xl"></i>
+        <div class="relative z-10 mx-auto max-w-7xl px-6 w-full">
+            <div class="max-w-3xl space-y-8 float-in">
+                <div class="flex items-center gap-4">
+                    <div class="h-[2px] w-12 bg-orange"></div>
+                    <span class="text-orange font-bold uppercase tracking-[0.3em] text-xs">Phòng thí nghiệm LAS-XD
+                        980</span>
                 </div>
-            @endif
+                <h1 class="text-5xl md:text-8xl font-black text-white leading-[1.1] uppercase">
+                    Chính xác <br><span class="text-orange text-outline">Minh bạch</span>
+                </h1>
+                <p class="text-lg text-slate-300 max-w-xl leading-relaxed">
+                    Đơn vị dẫn đầu về kiểm định và địa kỹ thuật tại Ninh Thuận. Chúng tôi đồng hành cùng sự bền vững của mọi
+                    công trình quốc gia.
+                </p>
+                <div class="flex flex-wrap gap-5">
+                    <a href="/dich-vu"
+                        class="bg-orange px-10 py-5 text-xs font-black uppercase text-white shadow-2xl hover:bg-orange-hover hover:-translate-y-1 transition-all">Khám
+                        phá dịch vụ</a>
+                    <a href="/lien-he"
+                        class="border border-white/30 px-10 py-5 text-xs font-black uppercase text-white hover:bg-white hover:text-navy transition-all">Liên
+                        hệ tư vấn</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="p-5">
-                <p class="text-xs uppercase tracking-[0.3em] text-black/50">Tin mới</p>
-                <h3 class="mt-2 font-display text-xl">{{ $item->title }}</h3>
-                <p class="mt-2 text-sm text-black/60">{{ \Illuminate\Support\Str::limit(strip_tags($item->excerpt ?: $item->content), 120) }}</p>
+    {{-- 2. GIỚI THIỆU & THỐNG KÊ (NĂNG LỰC) --}}
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative group">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-orange/10 -z-10 rounded-full"></div>
+                    <img src="/images/Picture2.png" class="rounded-2xl shadow-2xl relative z-10" alt="Nhân sự Gia Nguyễn">
+                    <div class="absolute -bottom-10 -right-10 bg-navy p-8 text-white hidden md:block z-20 shadow-2xl">
+                        <p class="text-orange font-black text-4xl italic">100%</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widest mt-1">Đảm bảo tiến độ</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-orange font-bold uppercase tracking-widest text-xs">Về chúng tôi</span>
+                        <h2 class="text-3xl md:text-5xl font-black text-navy uppercase mt-4 leading-tight">Năng lực thực thi
+                            <br> vượt trội
+                        </h2>
+                    </div>
+                    <p class="text-slate-600 leading-relaxed italic">
+                        "Gia Nguyễn không chỉ cung cấp những con số thí nghiệm, chúng tôi cung cấp sự an tâm tuyệt đối cho
+                        chủ đầu tư thông qua quy trình kiểm soát nghiêm ngặt ISO/IEC 17025."
+                    </p>
+
+                    {{-- Grid Thống kê --}}
+                    <div class="grid grid-cols-2 gap-8 border-t border-slate-100 pt-8">
+                        <div>
+                            <h4 class="text-4xl font-black text-navy italic">14+</h4>
+                            <p class="text-xs font-bold text-slate-400 uppercase mt-2">Năm kinh nghiệm</p>
+                        </div>
+                        <div>
+                            <h4 class="text-4xl font-black text-navy italic">500+</h4>
+                            <p class="text-xs font-bold text-slate-400 uppercase mt-2">Dự án hoàn thành</p>
+                        </div>
+                        <div>
+                            <h4 class="text-4xl font-black text-navy italic">30+</h4>
+                            <p class="text-xs font-bold text-slate-400 uppercase mt-2">Nhân sự chuyên môn</p>
+                        </div>
+                        <div>
+                            <h4 class="text-4xl font-black text-navy italic">24/7</h4>
+                            <p class="text-xs font-bold text-slate-400 uppercase mt-2">Hỗ trợ kỹ thuật</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </a>
-        @empty
-            <div class="rounded-3xl border border-black/10 bg-white p-6 text-sm text-black/60 col-span-3 text-center">
-                Chưa có bài viết. Hãy thêm bài viết để hiển thị tại đây.
+        </div>
+    </section>
+
+    {{-- 3. DỊCH VỤ TRỌNG ĐIỂM --}}
+    <section class="py-24 bg-light relative">
+        <div class="mx-auto max-w-7xl px-6 text-center mb-16">
+            <span class="text-orange font-bold uppercase tracking-[0.3em] text-xs">Lĩnh vực hoạt động</span>
+            <h2 class="text-3xl md:text-5xl font-black text-navy uppercase mt-4">Dịch vụ trọng điểm</h2>
+            <div class="w-20 h-1 bg-orange mx-auto mt-6"></div>
+        </div>
+
+        <div class="mx-auto max-w-7xl px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @foreach($featuredServices as $service)
+                <div class="group p-12 bg-white hover-lift border border-slate-100 rounded-3xl text-center">
+                    <div
+                        class="w-20 h-20 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-8 group-hover:bg-orange transition-colors duration-500">
+                        <i
+                            class="fa-solid {{ $service['icon'] }} text-3xl text-navy group-hover:text-white transition-colors"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy uppercase mb-4">{{ $service['title'] }}</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">{{ $service['desc'] }}</p>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    {{-- SECTION DỰ ÁN TIÊU BIỂU --}}
+<section class="py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6">
+        {{-- Tiêu đề và Nút liên kết --}}
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+            <div class="max-w-xl text-left">
+                <span class="text-orange font-bold uppercase tracking-widest text-xs">Năng lực thực hiện</span>
+                <h2 class="text-3xl md:text-5xl font-black text-navy uppercase mt-4 italic">Dự án tiêu biểu</h2>
             </div>
-        @endforelse
+            
+            <a href="{{ route('client.projects.index') }}" class="group flex items-center gap-3 text-xs font-black uppercase text-navy border-b-2 border-orange pb-2 hover:text-orange transition-all">
+                Xem tất cả 91+ dự án 
+                <i class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-2"></i>
+            </a>
+        </div>
+
+        {{-- Danh sách 4 dự án theo phong cách Trang Dự Án --}}
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            @php
+                // Dữ liệu mẫu giống trang dự án (nếu Database chưa có hoặc muốn hiển thị cố định)
+                $displayProjects = [
+                    ['name' => 'Đường cao tốc Bắc - Nam', 'desc' => 'Thí nghiệm vật liệu xây dựng và kiểm định chất lượng nền mặt đường.'],
+                    ['name' => 'Điện mặt trời Phước Thái 1', 'desc' => 'Kiểm định kết cấu và hệ thống móng pin'],
+                    ['name' => 'Hệ thống thủy lợi tân mỹ', 'desc' => 'Thí nghiệm bê tông thủy công & đất đắp'],
+                    ['name' => 'Đường ven biển Bình Tiên - Cà Ná', 'desc' => 'Thử nghiệm cơ lý đất và bê tông nhựa tại hiện trường'],
+                ];
+            @endphp
+
+            @foreach($displayProjects as $p)
+            <a href="{{ route('client.projects.index') }}" class="group relative overflow-hidden rounded-2xl border border-slate-100 bg-slate-50 p-8 transition-all hover:shadow-xl hover:-translate-y-2 flex flex-col h-full">
+                {{-- Icon hoặc Tag nhỏ --}}
+                <div class="mb-6 flex justify-between items-start">
+                    <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-orange group-hover:bg-orange group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-helmet-safety text-xl"></i>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-orange">LAS-XD 980</span>
+                </div>
+
+                {{-- Tên dự án (Quan trọng nhất) --}}
+                <h3 class="text-xl font-bold text-navy leading-tight uppercase group-hover:text-orange transition-colors">
+                    {{ $p['name'] }}
+                </h3>
+
+                {{-- Mô tả ngắn --}}
+                <p class="mt-4 text-sm text-slate-500 leading-relaxed flex-grow">
+                    {{ $p['desc'] }}
+                </p>
+
+                {{-- Nút giả xem chi tiết --}}
+                <div class="mt-8 pt-6 border-t border-slate-200/60 flex items-center justify-between">
+                    <span class="text-[10px] font-black uppercase text-navy">Chi tiết dự án</span>
+                    <i class="fa-solid fa-chevron-right text-orange text-xs"></i>
+                </div>
+            </a>
+            @endforeach
+        </div>
     </div>
 </section>
+
+    {{-- 5. TIN TỨC MỚI NHẤT --}}
+    <section class="py-24 bg-light slant-top">
+        <div class="mx-auto max-w-7xl px-6 text-center mb-16">
+            <span class="text-orange font-bold uppercase tracking-[0.3em] text-xs">Góc chia sẻ</span>
+            <h2 class="text-3xl md:text-5xl font-black text-navy uppercase mt-4">Tin tức & Sự kiện</h2>
+        </div>
+
+        <div class="mx-auto max-w-7xl px-6 grid md:grid-cols-3 gap-10">
+            @forelse($latestPosts as $post)
+                <article class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="{{ asset('storage/' . $post->featured_image) }}"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="{{ $post->title }}">
+                    </div>
+                    <div class="p-8">
+                        <div
+                            class="flex items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
+                            <span><i
+                                    class="fa-regular fa-calendar-check mr-2"></i>{{ $post->created_at->format('d/m/Y') }}</span>
+                            <span class="text-orange">#TinTuc</span>
+                        </div>
+                        <h3
+                            class="text-lg font-bold text-navy group-hover:text-orange transition-colors line-clamp-2 uppercase leading-tight">
+                            {{ $post->title }}
+                        </h3>
+                        <a href="/tin-tuc/{{ $post->slug }}"
+                            class="inline-block mt-6 text-[11px] font-black uppercase text-navy group-hover:translate-x-2 transition-transform">Đọc
+                            tiếp <i class="fa-solid fa-arrow-right ml-2 text-orange"></i></a>
+                    </div>
+                </article>
+            @empty
+                <div class="col-span-full text-center text-slate-400 italic py-10">Hiện chưa có tin tức mới.</div>
+            @endforelse
+        </div>
+    </section>
 @endsection

@@ -36,9 +36,10 @@
                         onmouseover="this.style.backgroundColor='#f8fafc'"
                         onmouseout="this.style.backgroundColor='transparent'">
                         <td style="padding: 15px; width: 100px;">
-                            @if($service->image)
-                                <img src="{{ asset('images/' . $service->image) }}"
-                                    style="width: 80px; height: 50px; object-fit: cover; border-radius: 6px; border: 1px solid #e2e8f0;">
+                            @if(!empty($service->featured_image))
+                                <img src="{{ str_starts_with($service->featured_image, '/') ? asset($service->featured_image) : asset('images/' . $service->featured_image) }}"
+                                    style="width: 80px; height: 50px; object-fit: cover; border-radius: 6px; border: 1px solid #e2e8f0;"
+                                    alt="Hình ảnh dịch vụ">
                             @else
                                 <div
                                     style="width: 80px; height: 50px; background: #f1f5f9; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #cbd5e1; font-size: 10px;">

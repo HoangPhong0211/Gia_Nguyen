@@ -1,125 +1,160 @@
 @extends('layouts.app')
 
 @section('content')
-@php
-$title = 'Về chúng tôi';
-@endphp
+    @php
+        $title = 'Về chúng tôi - Gia Nguyên LAS-XD 980';
+    @endphp
 
-<section class="mx-auto w-full max-w-6xl px-5 py-16">
-    <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] items-center">
-        <div class="space-y-4">
-            <p class="text-sm uppercase tracking-[0.3em] text-black/50">Về chúng tôi</p>
-            <h1 class="text-4xl md:text-5xl font-display">CÔNG TY TNHH XÂY DỰNG VÀ THƯƠNG MẠI GIA NGUYÊN</h1>
-            <p class="text-black/70 text-lg">
-                Thành lập năm 2010, Gia Nguyên chuyên thí nghiệm LAS-XD 980 và kiểm định xây dựng. Chúng tôi cung cấp số liệu chuẩn xác cho các công trình hạ tầng và năng lượng trọng điểm.
-            </p>
-        </div>
-        <figure class="rounded-3xl overflow-hidden border border-black/10 bg-white shadow-soft">
-            <img src="/images/Picture9.png" alt="Trụ sở và phòng thí nghiệm LAS-XD 1109" class="aspect-[4/3] w-full object-cover">
-            <figcaption class="px-5 py-3 text-sm text-black/60">Hình ảnh trụ sở và khu vực phòng thí nghiệm.</figcaption>
-        </figure>
-    </div>
-</section>
+    {{-- 1. HERO SECTION --}}
+    <section class="relative py-20 bg-navy overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-dot-grid"></div>
+        <div class="mx-auto w-full max-w-7xl px-5 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span
+                        class="inline-block px-4 py-1.5 bg-orange/10 border border-orange/20 text-orange text-[11px] font-black uppercase tracking-[0.2em] rounded-full">
+                        Thiết lập từ 2010
+                    </span>
 
-<section class="bg-stone">
-    <div class="mx-auto w-full max-w-6xl px-5 py-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <div class="rounded-3xl bg-white p-6 border border-black/5">
-            <p class="text-xs uppercase tracking-[0.3em] text-black/50">Tầm nhìn</p>
-            <p class="mt-3 text-black/70">Trở thành trung tâm kiểm định tin cậy và chuẩn xác hàng đầu khu vực.</p>
-        </div>
-        <div class="rounded-3xl bg-white p-6 border border-black/5">
-            <p class="text-xs uppercase tracking-[0.3em] text-black/50">Sứ mệnh</p>
-            <p class="mt-3 text-black/70">Cung cấp dữ liệu trung thực, bảo vệ chất lượng và sự bền vững của công trình.</p>
-        </div>
-        <div class="rounded-3xl bg-white p-6 border border-black/5">
-            <p class="text-xs uppercase tracking-[0.3em] text-black/50">Năng lực cốt lõi</p>
-            <p class="mt-3 text-black/70">Kết hợp giữa hệ thống VILAS 264, thiết bị hiện đại và đội ngũ kỹ sư thực chiến dày dạn kinh nghiệm.</p>
-        </div>
-        <div class="rounded-3xl bg-white p-6 border border-black/5">
-            <p class="text-xs uppercase tracking-[0.3em] text-black/50">Sơ đồ tổ chức</p>
-            <p class="mt-3 text-black/70">Vận hành tinh gọn: Ban Giám đốc trực tiếp quản lý phòng Kỹ thuật và bộ phận Kiểm soát chất lượng hiện trường.</p>
-        </div>
-    </div>
-</section>
-
-<section class="mx-auto w-full max-w-6xl px-5 py-16 space-y-10">
-    <div class="rounded-3xl border border-black/10 bg-white p-7 shadow-soft">
-        <p class="text-sm uppercase tracking-[0.3em] text-black/50">Năng lực phòng thí nghiệm</p>
-        <p class="mt-4 text-black/70 leading-8 text-lg">
-            "Chất lượng công trình bắt đầu từ sự chuẩn xác của dữ liệu nền móng. Tại Hoàng Gia Việt Nam, chúng tôi tự hào sở hữu Phòng thí nghiệm cơ học đất và vật liệu xây dựng đạt chuẩn quốc gia LAS-XD 1109. Với hệ thống máy móc đo lường hiện đại và quy trình kiểm soát mẫu vật nghiêm ngặt từ hiện trường đến phòng thí nghiệm, chúng tôi cam kết mang lại những kết quả thí nghiệm minh bạch, khách quan và đáng tin cậy nhất."
-        </p>
-    </div>
-
-    <div class="grid gap-6 lg:grid-cols-2">
-        <article class="rounded-3xl border border-black/10 bg-white overflow-hidden shadow-soft">
-            <div class="grid grid-cols-2 gap-0">
-                <img src="/images/6.jpg" alt="Hộp mẫu đất ngoài hiện trường" class="aspect-[4/3] w-full object-cover">
-                <img src="/images/8.jpg" alt="Hộp mẫu đất đã phân loại" class="aspect-[4/3] w-full object-cover">
-            </div>
-            <div class="p-6">
-                <h3 class="font-display text-2xl">Lưu mẫu và Phân loại chuẩn xác</h3>
-                <p class="mt-3 text-black/70 leading-7">
-                    Mẫu đất, đá từ các mũi khoan khảo sát hiện trường được thu thập, bảo quản nguyên dạng trong các hộp mẫu chuyên dụng và ghi chú độ sâu chi tiết. Quy trình phân loại và bảo quản tuân thủ nghiêm ngặt các tiêu chuẩn kỹ thuật, đảm bảo tính nguyên bản của mẫu vật trước khi đưa vào phân tích chuyên sâu.
-                </p>
-            </div>
-        </article>
-
-        <article class="rounded-3xl border border-black/10 bg-white overflow-hidden shadow-soft">
-            <div class="grid grid-cols-2 gap-0">
-                <img src="/images/5.jpg" alt="Trang thiết bị thí nghiệm trong phòng" class="aspect-[4/3] w-full object-cover">
-                <img src="/images/9.jpg" alt="Máy nén và khay mẫu thí nghiệm" class="aspect-[4/3] w-full object-cover">
-            </div>
-            <div class="p-6">
-                <h3 class="font-display text-2xl">Trang thiết bị đo lường hiện đại</h3>
-                <p class="mt-3 text-black/70 leading-7">
-                    Hệ thống thiết bị đo lường độ ẩm, tỷ trọng và các loại máy nén cơ lý được đầu tư đồng bộ, hiệu chuẩn định kỳ. Chúng tôi có đầy đủ năng lực thực hiện các thí nghiệm trong phòng phức tạp như: nén cố kết, cắt trượt, nén 3 trục... đáp ứng mọi yêu cầu khắt khe của các dự án giao thông, công nghiệp và dân dụng.
-                </p>
-            </div>
-        </article>
-    </div>
-
-    <article class="rounded-3xl border border-black/10 bg-white overflow-hidden shadow-soft">
-        <div class="grid lg:grid-cols-[0.9fr_1.1fr] items-stretch">
-            <img src="/images/7.jpg" alt="Kỹ sư phòng thí nghiệm đang thao tác" class="h-full w-full object-cover min-h-[280px]">
-            <div class="p-6 md:p-8">
-                <h3 class="font-display text-2xl">Đội ngũ thí nghiệm viên chuyên nghiệp</h3>
-                <p class="mt-3 text-black/70 leading-7">
-                    Con người là yếu tố quyết định tạo nên giá trị "Chính xác - An toàn". Đội ngũ kỹ sư, thí nghiệm viên của Hoàng Gia Việt Nam không chỉ vững chuyên môn mà còn tận tâm trong từng thao tác đo đạc, đảm bảo mọi bộ hồ sơ báo cáo địa chất đều phản ánh đúng bản chất nền đất công trình.
-                </p>
+                    <h1 class="text-4xl md:text-6xl font-black text-white uppercase leading-[1.2] tracking-normal">
+                        Công ty TNHH <br>
+                        {{-- 2. Đảm bảo dòng màu cam cũng dùng tracking-normal (mặc định của cha) --}}
+                        <span class="text-orange">Xây dựng & Thương mại</span><br>
+                        Gia Nguyên
+                    </h1>
+                    <p class="text-slate-400 text-lg leading-relaxed max-w-xl">
+                        Đơn vị hàng đầu tại Ninh Thuận chuyên về thí nghiệm chuyên ngành xây dựng (LAS-XD 980) và kiểm định
+                        chất lượng công trình, cung cấp giải pháp kỹ thuật chính xác cho các dự án hạ tầng trọng điểm.
+                    </p>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-orange/20 blur-3xl rounded-full"></div>
+                    <figure class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                        <img src="/images/Picture9.png" alt="Trụ sở Gia Nguyên" class="w-full aspect-video object-cover">
+                    </figure>
+                </div>
             </div>
         </div>
-    </article>
-</section>
+    </section>
 
-<section class="mx-auto w-full max-w-6xl px-5 py-16">
-    <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-        <div class="rounded-3xl border border-black/10 bg-white p-7 shadow-soft">
-            <h2 class="text-3xl font-display">Lịch sử hình thành và đội ngũ kỹ sư</h2>
-            <p class="mt-4 text-black/70 leading-7">
-                Công ty Cổ phần Địa kỹ thuật Hoàng Gia Việt Nam được thành lập từ năm 2011 trong bối cảnh nhu cầu xây dựng hạ tầng,
-                nhà máy và khu đô thị tăng mạnh tại nhiều địa phương. Ngay từ giai đoạn đầu, công ty đã định hướng tập trung vào chất
-                lượng dữ liệu khảo sát và kết quả thí nghiệm, coi đây là nền tảng cho mọi quyết định thiết kế và thi công. Trải qua quá
-                trình phát triển, Hoàng Gia Việt Nam từng bước chuẩn hóa hệ thống quản lý chất lượng, đầu tư máy khoan XY-1, thiết bị
-                CPT và năng lực phòng thí nghiệm theo phạm vi LAS-XD 1109 để đáp ứng các yêu cầu ngày càng cao của chủ đầu tư và nhà thầu.
-                Đội ngũ kỹ sư của công ty gồm các cán bộ khảo sát, thí nghiệm và kỹ thuật hồ sơ có kinh nghiệm thực chiến ở nhiều loại dự án
-                như cầu, đường cao tốc, nhà máy công nghiệp và khu dân cư. Mỗi dự án đều được triển khai theo quy trình kiểm soát nội bộ rõ ràng:
-                từ tiếp nhận nhiệm vụ, khảo sát hiện trường, thí nghiệm kiểm chứng đến tổng hợp báo cáo kỹ thuật và bàn giao kết quả. Nhờ phương
-                châm Chính xác - An toàn - Hiệu quả - Bền vững, Hoàng Gia Việt Nam đã xây dựng được uy tín chuyên môn, trở thành đối tác đáng tin cậy
-                cho nhiều đơn vị trong và ngoài địa bàn Hải Dương.
-            </p>
-        </div>
-        <div class="space-y-5">
-            <div class="rounded-3xl bg-stone p-6">
-                <p class="text-xs uppercase tracking-[0.3em] text-black/50">Chứng nhận</p>
-                <h3 class="mt-2 font-display text-2xl">LAS-XD 1109</h3>
-                <p class="mt-3 text-sm text-black/70">Khu vực này dùng để trưng bày ảnh scan giấy chứng nhận LAS-XD 1109.</p>
+    {{-- 2. THÔNG TIN PHÁP LÝ & NĂNG LỰC --}}
+    <section class="py-24 bg-white">
+        <div class="mx-auto max-w-7xl px-5">
+            <div class="grid lg:grid-cols-3 gap-10">
+                {{-- Cột trái: Thông tin doanh nghiệp --}}
+                <div class="lg:col-span-2 space-y-12">
+                    <div>
+                        <h2 class="text-3xl font-black text-navy uppercase mb-8 flex items-center gap-4">
+                            <span class="w-12 h-1px bg-orange"></span>
+                            Hành trình phát triển
+                        </h2>
+                        <div class="prose prose-slate max-w-none text-slate-600 space-y-6">
+                            <p>
+                                Được thành lập theo Giấy chứng nhận đăng ký doanh nghiệp số <strong>4500453534</strong>,
+                                Công ty Gia Nguyên đã khẳng định vị thế là một trong những đơn vị tư vấn kỹ thuật xây dựng
+                                uy tín nhất khu vực Nam Trung Bộ.
+                            </p>
+                            <p>
+                                Với phòng thí nghiệm <strong>LAS-XD 980</strong> được Bộ Xây dựng công nhận và hệ thống quản
+                                lý chất lượng đạt chuẩn <strong>ISO/IEC 17025:2017 (VILAS 264)</strong>, chúng tôi cam kết
+                                mang lại những kết quả thí nghiệm khách quan, chuẩn xác và kịp thời nhất.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Grid năng lực --}}
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div
+                            class="p-8 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-orange transition-all">
+                            <i class="fa-solid fa-microscope text-3xl text-orange mb-5"></i>
+                            <h4 class="font-bold text-navy uppercase text-lg mb-2">LAS-XD 980</h4>
+                            <p class="text-sm text-slate-500">Phòng thí nghiệm chuyên ngành được trang bị máy móc hiện đại,
+                                đáp ứng đầy đủ các phép thử vật liệu và nền móng.</p>
+                        </div>
+                        <div
+                            class="p-8 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-orange transition-all">
+                            <i class="fa-solid fa-award text-3xl text-orange mb-5"></i>
+                            <h4 class="font-bold text-navy uppercase text-lg mb-2">ISO/IEC 17025</h4>
+                            <p class="text-sm text-slate-500">Chứng chỉ năng lực thí nghiệm đạt tiêu chuẩn quốc tế, đảm bảo
+                                tính pháp lý cao nhất cho mọi hồ sơ hoàn công.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Cột phải: Con số ấn tượng --}}
+                <div class="space-y-6">
+                    <div class="bg-navy rounded-3xl p-10 text-white text-center relative overflow-hidden group">
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-orange/10 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-150">
+                        </div>
+                        <span class="text-5xl font-black text-orange block mb-2">91+</span>
+                        <span class="text-xs font-bold uppercase tracking-widest opacity-60">Dự án trọng điểm</span>
+                    </div>
+
+                    <div class="bg-slate-50 rounded-3xl p-8 border border-slate-100">
+                        <h4 class="font-bold text-navy uppercase mb-6 text-sm tracking-wider">Lĩnh vực hoạt động</h4>
+                        <ul class="space-y-4">
+                            @foreach(['Thí nghiệm vật liệu xây dựng', 'Khảo sát địa chất công trình', 'Kiểm định chất lượng công trình', 'Tư vấn giải pháp kỹ thuật'] as $field)
+                                <li class="flex items-center gap-3 text-sm text-slate-600 font-medium">
+                                    <i class="fa-solid fa-check text-orange"></i> {{ $field }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="rounded-3xl bg-stone p-6">
-                <p class="text-xs uppercase tracking-[0.3em] text-black/50">Năng lực hoạt động xây dựng</p>
-                <h3 class="mt-2 font-display text-2xl">Chứng chỉ năng lực</h3>
-                <p class="mt-3 text-sm text-black/70">Khu vực này dùng để trưng bày ảnh scan chứng chỉ năng lực hoạt động xây dựng.</p>
+        </div>
+    </section>
+
+    {{-- 3. TẦM NHÌN & GIÁ TRỊ CỐT LÕI --}}
+    <section class="py-24 bg-slate-50">
+        <div class="mx-auto max-w-7xl px-5 text-center mb-16">
+            <span class="text-orange font-black uppercase tracking-widest text-xs">Giá trị Gia Nguyên</span>
+            <h2 class="text-3xl md:text-5xl font-black text-navy uppercase mt-4 italic">Phương châm hoạt động</h2>
+        </div>
+
+        <div class="mx-auto max-w-7xl px-5 grid md:grid-cols-4 gap-8">
+            @php
+                $values = [
+                    ['Chính xác', 'Cung cấp số liệu trung thực, khách quan tuyệt đối.', 'fa-bullseye'],
+                    ['An toàn', 'Đảm bảo tiêu chuẩn an toàn kỹ thuật cho công trình.', 'fa-shield-halved'],
+                    ['Hiệu quả', 'Tối ưu hóa thời gian và chi phí cho đối tác.', 'fa-bolt-lightning'],
+                    ['Bền vững', 'Góp phần tạo nên những công trình vĩnh cửu.', 'fa-leaf']
+                ];
+            @endphp
+            @foreach($values as $v)
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all text-center group">
+                    <div
+                        class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-orange transition-colors">
+                        <i class="fa-solid {{ $v[2] }} text-2xl text-navy group-hover:text-white"></i>
+                    </div>
+                    <h4 class="font-black text-navy uppercase mb-3">{{ $v[0] }}</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">{{ $v[1] }}</p>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    {{-- 4. CTA --}}
+    <section class="py-20 bg-white">
+        <div class="mx-auto max-w-5xl px-5 bg-navy rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-orange/20 to-transparent"></div>
+            <div class="relative z-10">
+                <h2 class="text-3xl md:text-5xl font-black text-white uppercase mb-8">Sẵn sàng đồng hành cùng dự án của bạn
+                </h2>
+                <p class="text-slate-400 mb-10 max-w-2xl mx-auto">Liên hệ ngay với đội ngũ kỹ sư của Gia Nguyên để nhận tư
+                    vấn kỹ thuật và báo giá thí nghiệm tốt nhất.</p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="/lien-he"
+                        class="bg-orange text-white px-10 py-4 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-orange/30">Hợp
+                        tác ngay</a>
+                    <a href="tel:02593531368"
+                        class="bg-white text-navy px-10 py-4 rounded-full font-black uppercase tracking-widest hover:bg-slate-100 transition-all flex items-center gap-3">
+                        <i class="fa-solid fa-phone"></i> 0259 353 1368
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
 @endsection
