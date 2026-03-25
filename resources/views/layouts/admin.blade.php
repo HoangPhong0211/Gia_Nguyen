@@ -134,10 +134,10 @@
             </div>
             @php $newContacts = \App\Models\Contact::where('status', 'new')->count(); @endphp
             @if($newContacts > 0)
-                <span
-                    style="background: #e74c3c; color: white; border-radius: 10px; padding: 2px 8px; font-size: 11px; font-weight: bold;">
-                    {{ $newContacts }}
-                </span>
+            <span
+                style="background: #e74c3c; color: white; border-radius: 10px; padding: 2px 8px; font-size: 11px; font-weight: bold;">
+                {{ $newContacts }}
+            </span>
             @endif
         </a>
 
@@ -157,6 +157,17 @@
             @yield('content')
         </div>
     </div>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    <script>
+        if (typeof ClassicEditor !== 'undefined') {
+            document.querySelectorAll('textarea.ckeditor').forEach((element) => {
+                ClassicEditor.create(element).catch((error) => {
+                    console.error(error);
+                });
+            });
+        }
+    </script>
 </body>
 
 </html>

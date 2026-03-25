@@ -8,9 +8,23 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::latest()->paginate(10);
+        $query = Contact::query();
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        $sort = $request->get('sort', 'latest');
+        $query->orderBy('created_at', $sort === 'oldest' ? 'asc' : 'desc');
+
+        $contacts = $query->paginate(10)->appends($request->query());
+
         return view('admin.contacts.index', compact('contacts'));
     }
 

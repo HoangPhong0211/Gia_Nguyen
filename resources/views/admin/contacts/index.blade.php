@@ -8,6 +8,29 @@
         </h2>
     </div>
 
+    <form method="GET" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+        <select name="status" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+            <option value="">Tất cả trạng thái</option>
+            <option value="new" {{ request('status') === 'new' ? 'selected' : '' }}>Mới</option>
+            <option value="done" {{ request('status') === 'done' ? 'selected' : '' }}>Đã xử lý</option>
+        </select>
+
+        <input type="date" name="date" value="{{ request('date') }}"
+            style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+
+        <select name="sort" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+            <option value="latest" {{ request('sort', 'latest') === 'latest' ? 'selected' : '' }}>Mới nhất</option>
+            <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Cũ nhất</option>
+        </select>
+
+        <button type="submit" style="background: #0f172a; color: white; padding: 8px 14px; border: none; border-radius: 8px; cursor: pointer;">
+            Lọc
+        </button>
+        <a href="{{ route('admin.contacts.index') }}" style="padding: 8px 14px; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; color: #475569;">
+            Reset
+        </a>
+    </form>
+
     <table style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
@@ -36,9 +59,9 @@
                 </td>
                 <td style="padding: 15px; text-align: center;">
                     @if($contact->status == 'new')
-                        <span style="background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">Mới</span>
+                    <span style="background: #fee2e2; color: #ef4444; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">Mới</span>
                     @else
-                        <span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">Đã xử lý</span>
+                    <span style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">Đã xử lý</span>
                     @endif
                 </td>
                 <td style="padding: 15px; text-align: center;">

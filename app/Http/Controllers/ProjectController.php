@@ -18,4 +18,16 @@ class ProjectController extends Controller
             'projects' => $projects,
         ]);
     }
+
+    public function show(string $slug)
+    {
+        $project = Project::query()
+            ->where('slug', $slug)
+            ->where('status', 'published')
+            ->firstOrFail();
+
+        return view('project-detail', [
+            'project' => $project,
+        ]);
+    }
 }

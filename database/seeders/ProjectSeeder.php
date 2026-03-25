@@ -14,23 +14,10 @@ class ProjectSeeder extends Seeder
         Project::truncate();
 
         $projects = [
-            // Cầu / Đường cao tốc
-            ['title' => 'Cầu sông Hương', 'category' => 'bridge', 'location' => 'Ninh Thuận', 'year' => 2024, 'image' => 'Picture6.png'],
-            ['title' => 'Cầu Kim Liên', 'category' => 'bridge', 'location' => 'Ninh Thuận', 'year' => 2024, 'image' => 'Picture1.png'],
-            ['title' => 'Địa chất công trình cầu', 'category' => 'bridge', 'location' => 'Ninh Thuận', 'year' => 2024, 'image' => 'Picture5.png'],
-            ['title' => 'Trung tâm hành chính', 'category' => 'bridge', 'location' => 'Ninh Thuận', 'year' => 2024, 'image' => 'Picture8.png'],
-
-            // Nhà máy công nghiệp
-            ['title' => 'Nhà máy Up Shine Lighting', 'category' => 'factory', 'location' => 'Bình Thuận', 'year' => 2023, 'image' => 'Picture9.png'],
-            ['title' => 'Nhà máy CDC LEASING', 'category' => 'factory', 'location' => 'Bình Thuận', 'year' => 2023, 'image' => 'Picture10.png'],
-            ['title' => 'Dự án pin TOPCON BOVIET', 'category' => 'factory', 'location' => 'Bình Thuận', 'year' => 2023, 'image' => 'Picture11.png'],
-            ['title' => 'Hạ tầng khu công nghiệp', 'category' => 'factory', 'location' => 'Bình Thuận', 'year' => 2023, 'image' => 'Picture4.png'],
-
-            // Khu đô thị - dân cư
-            ['title' => 'Trường THCS Nhân Huệ', 'category' => 'urban', 'location' => 'Phú Yên', 'year' => 2021, 'image' => 'Picture2.png'],
-            ['title' => 'Khu dân cư mở rộng', 'category' => 'urban', 'location' => 'Phú Yên', 'year' => 2021, 'image' => 'Picture3.png'],
-            ['title' => 'Hạ tầng khu đô thị mới', 'category' => 'urban', 'location' => 'Phú Yên', 'year' => 2021, 'image' => 'Picture4.png'],
-            ['title' => 'Khu nghỉ dưỡng sinh thái', 'category' => 'urban', 'location' => 'Phú Yên', 'year' => 2021, 'image' => 'Picture7.png'],
+            ['title' => 'Lĩnh vực Năng lượng', 'category' => 'energy', 'location' => 'Ninh Thuận', 'year' => 2024, 'image' => 'Picture6.png'],
+            ['title' => 'Hạ tầng Giao thông Trọng điểm', 'category' => 'transport', 'location' => 'Ninh Thuận', 'year' => 2024, 'image' => 'Picture1.png'],
+            ['title' => 'Thủy lợi & Nông nghiệp Công nghệ cao', 'category' => 'agriculture', 'location' => 'Ninh Thuận', 'year' => 2023, 'image' => 'Picture5.png'],
+            ['title' => 'Công trình Dân dụng & Công nghiệp', 'category' => 'civil-industrial', 'location' => 'Ninh Thuận', 'year' => 2023, 'image' => 'Picture8.png'],
         ];
 
         foreach ($projects as $item) {

@@ -25,8 +25,9 @@ use App\Models\Service;
 | ROUTES CHO QUẢN TRỊ (ADMIN) - ĐƯA LÊN ĐẦU ĐỂ ƯU TIÊN
 |--------------------------------------------------------------------------
 */
+
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    
+
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     });
@@ -40,7 +41,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('posts', AdminPostController::class);
     Route::resource('projects', AdminProjectController::class);
     Route::resource('certificates', AdminCertificateController::class);
-    
+
     Route::resource('contacts', AdminContactController::class)->only(['index', 'destroy']);
     Route::post('/contacts/{id}/status', [AdminContactController::class, 'updateStatus'])->name('contacts.updateStatus');
 });
@@ -68,6 +69,7 @@ Route::get('/tin-tuc/{slug}', [ClientPostController::class, 'show'])->name('clie
 
 // Các trang khác
 Route::get('/du-an', [ClientProjectController::class, 'index'])->name('client.projects.index');
+Route::get('/du-an/{slug}', [ClientProjectController::class, 'show'])->name('client.projects.show');
 Route::get('/chung-chi', [ClientCertificateController::class, 'index'])->name('client.certificates.index');
 Route::get('/lien-he', [ClientContactController::class, 'index'])->name('client.contact.index');
 Route::post('/lien-he', [ClientContactController::class, 'store'])->name('client.contact.store');
@@ -80,7 +82,7 @@ Route::view('/doi-tac-khach-hang', 'partners')->name('partners');
 | AUTH & PROFILE
 |--------------------------------------------------------------------------
 */
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

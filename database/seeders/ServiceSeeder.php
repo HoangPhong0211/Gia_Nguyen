@@ -12,18 +12,18 @@ class ServiceSeeder extends Seeder
     {
         $items = [
             [
-                'title' => 'Giam sat va tu van xay dung',
-                'summary' => 'Giam sat chat luong, tien do va an toan lao dong trong thi cong.',
+                'title' => 'Thí nghiệm Vật liệu Xây dựng',
+                'summary' => 'Thí nghiệm, đánh giá chỉ tiêu cơ lý và hóa học của vật liệu xây dựng.',
                 'image' => '/images/card-image1.jpg',
             ],
             [
-                'title' => 'Thi nghiem va kiem dinh vat lieu xay dung',
-                'summary' => 'Thu nghiem vat lieu, danh gia chi tieu co ly va hoa hoc.',
+                'title' => 'Địa kỹ thuật & Khảo sát Hiện trường',
+                'summary' => 'Khảo sát địa chất, đánh giá nền móng và điều kiện hiện trường.',
                 'image' => '/images/card-image2.jpg',
             ],
             [
-                'title' => 'Khao sat dia chat - dia hinh',
-                'summary' => 'Danh gia dieu kien nen mong, dia chat cong trinh.',
+                'title' => 'Kiểm định & Quan trắc Công trình',
+                'summary' => 'Kiểm định chất lượng, quan trắc biến dạng và an toàn công trình.',
                 'image' => '/images/card-image3.jpg',
             ],
         ];
@@ -32,7 +32,7 @@ class ServiceSeeder extends Seeder
             $slug = Str::slug($item['title']);
 
             Service::query()->updateOrCreate(
-                ['slug' => $slug],
+                ['sort_order' => $index + 1],
                 [
                     'title' => $item['title'],
                     'slug' => $slug,

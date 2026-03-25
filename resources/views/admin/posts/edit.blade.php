@@ -12,7 +12,7 @@
     <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        
+
         <div style="display: grid; grid-template-cols: 2fr 1fr; gap: 30px;">
             <div>
                 <div style="margin-bottom: 20px;">
@@ -22,19 +22,19 @@
 
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; font-weight: 600; margin-bottom: 8px;">Nội dung chi tiết</label>
-                    <textarea id="editor" name="content" style="width: 100%; min-height: 300px;">{{ $post->content }}</textarea>
+                    <textarea name="content" class="ckeditor" style="width: 100%; min-height: 300px;">{{ $post->content }}</textarea>
                 </div>
             </div>
 
             <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0;">
-                
+
                 <div style="margin-bottom: 20px;">
                     <label style="display: block; font-weight: 600; margin-bottom: 8px; color: #475569;">Danh mục</label>
                     <select name="category_id" required style="width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; background: white;">
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
-                            </option>
+                        <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
                         @endforeach
                     </select>
                 </div>

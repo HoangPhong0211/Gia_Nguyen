@@ -4,9 +4,9 @@
 <div style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
     {{-- Thông báo thành công sau khi xóa/thêm --}}
     @if(session('success'))
-        <div style="background: #dcfce7; color: #15803d; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 500;">
-            <i class="fa-solid fa-circle-check"></i> {{ session('success') }}
-        </div>
+    <div style="background: #dcfce7; color: #15803d; padding: 12px; border-radius: 8px; margin-bottom: 20px; font-weight: 500;">
+        <i class="fa-solid fa-circle-check"></i> {{ session('success') }}
+    </div>
     @endif
 
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
@@ -17,6 +17,35 @@
             <i class="fa-solid fa-plus"></i> Thêm bài viết mới
         </a>
     </div>
+
+    <form method="GET" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+        <select name="status" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+            <option value="">Tất cả trạng thái</option>
+            <option value="published" {{ request('status') === 'published' ? 'selected' : '' }}>Đã đăng</option>
+            <option value="draft" {{ request('status') === 'draft' ? 'selected' : '' }}>Bản nháp</option>
+        </select>
+
+        <select name="category_id" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+            <option value="">Tất cả danh mục</option>
+            @foreach($categories as $category)
+            <option value="{{ $category->id }}" {{ (string)request('category_id') === (string)$category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+            @endforeach
+        </select>
+
+        <select name="sort" style="padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+            <option value="latest" {{ request('sort', 'latest') === 'latest' ? 'selected' : '' }}>Mới nhất</option>
+            <option value="oldest" {{ request('sort') === 'oldest' ? 'selected' : '' }}>Cũ nhất</option>
+        </select>
+
+        <button type="submit" style="background: #0f172a; color: white; padding: 8px 14px; border: none; border-radius: 8px; cursor: pointer;">
+            Lọc
+        </button>
+        <a href="{{ route('admin.posts.index') }}" style="padding: 8px 14px; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; color: #475569;">
+            Reset
+        </a>
+    </form>
 
     <table style="width: 100%; border-collapse: collapse; font-family: 'Segoe UI', sans-serif;">
         <thead>
@@ -34,14 +63,14 @@
                 <td style="padding: 15px;">
                     <div style="width: 70px; height: 50px; overflow: hidden; border-radius: 8px; border: 1px solid #e2e8f0; background: #f1f5f9;">
                         @php
-                            $imgName = $post->featured_image;
-                            $src = (str_starts_with($imgName, 'http') || str_contains($imgName, 'images/')) 
-                                    ? asset($imgName) 
-                                    : asset('images/' . $imgName);
+                        $imgName = $post->featured_image;
+                        $src = (str_starts_with($imgName, 'http') || str_contains($imgName, 'images/'))
+                        ? asset($imgName)
+                        : asset('images/' . $imgName);
                         @endphp
-                        <img src="{{ $src }}" 
-                             style="width: 100%; height: 100%; object-fit: cover;" 
-                             onerror="this.src='{{ asset('images/main-logo.png') }}'">
+                        <img src="{{ $src }}"
+                            style="width: 100%; height: 100%; object-fit: cover;"
+                            onerror="this.src='{{ asset('images/main-logo.png') }}'">
                     </div>
                 </td>
                 <td style="padding: 15px;">
@@ -57,9 +86,9 @@
                 </td>
                 <td style="padding: 15px;">
                     @if($post->status == 'published')
-                        <span style="color: #15803d; font-size: 12px; font-weight: 600;">● Đã đăng</span>
+                    <span style="color: #15803d; font-size: 12px; font-weight: 600;">● Đã đăng</span>
                     @else
-                        <span style="color: #a16207; font-size: 12px; font-weight: 600;">● Bản nháp</span>
+                    <span style="color: #a16207; font-size: 12px; font-weight: 600;">● Bản nháp</span>
                     @endif
                 </td>
                 <td style="padding: 15px; text-align: center;">
@@ -68,7 +97,7 @@
                             <i class="fa-solid fa-pen"></i>
                         </a>
                         <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài viết này?')">
-                            @csrf 
+                            @csrf
                             @method('DELETE')
                             <button type="submit" style="background:none; border:none; color: #ef4444; cursor: pointer; padding: 0;" title="Xóa">
                                 <i class="fa-solid fa-trash-can"></i>

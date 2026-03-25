@@ -9,10 +9,19 @@ use Illuminate\Support\Str;
 
 class ServiceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        // Lấy danh sách mới nhất để Admin dễ quản lý
-        $services = Service::latest()->get();
+        $query = Service::query();
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $sort = $request->get('sort', 'latest');
+        $query->orderBy('created_at', $sort === 'oldest' ? 'asc' : 'desc');
+
+        $services = $query->get();
+
         return view('admin.services.index', compact('services'));
     }
 
@@ -77,7 +86,7 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         $service = Service::findOrFail($id);
-        
+
         $request->validate([
             'title' => 'required|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
@@ -88,7 +97,7 @@ class ServiceController extends Controller
         $service->summary = $request->summary;
         $service->description = $request->description;
         $service->status = $request->status;
-        
+
         // Chỉ cập nhật slug nếu title thay đổi
         if ($service->isDirty('title')) {
             $slug = Str::slug($request->title);
@@ -125,7 +134,7 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $service = Service::findOrFail($id);
-        
+
         // Xóa file ảnh trước khi xóa bản ghi
         if ($service->featured_image && file_exists(public_path($service->featured_image))) {
             if (!str_contains($service->featured_image, 'card-image')) {

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'Gia Nguyên - LAS-XD 980' }}</title>
+    <title>{{ $title ?? 'Gia Nguyên' }}</title>
+    <link rel="icon" href="/images/logo.png" type="image/png">
 
     {{-- 1. FONTS & ICONS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,8 +16,9 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="bg-white text-ink antialiased">
-    
+
     {{-- 2. TOPBAR --}}
     <div class="bg-navy text-white py-2 hidden md:block">
         <div class="mx-auto max-w-7xl px-5 flex justify-between text-xs font-bold uppercase tracking-widest">
@@ -39,8 +42,8 @@
         <div class="mx-auto max-w-7xl px-5 py-4 flex justify-between items-center">
             {{-- Logo --}}
             <a href="/" class="flex items-center gap-3 group">
-                <div class="bg-navy p-2.5 rounded-lg transform group-hover:rotate-6 transition-all duration-300 shadow-lg shadow-navy/20">
-                    <span class="text-orange font-black text-2xl italic">GN</span>
+                <div class="w-14 h-14 rounded-lg overflow-hidden transform group-hover:rotate-6 transition-all duration-300">
+                    <img src="/images/logo.png" alt="Gia Nguyen logo" class="w-full h-full object-contain p-1">
                 </div>
                 <div>
                     <h1 class="text-navy font-black text-xl leading-none uppercase tracking-tighter">Gia Nguyên</h1>
@@ -50,22 +53,22 @@
 
             {{-- Nav Menu (ĐÃ THÊM TIN TỨC) --}}
             <nav class="hidden lg:flex items-center gap-7">
-                @php 
-                    $navItems = [
-                        ['Trang chủ', '/'],
-                        ['Giới thiệu', '/gioi-thieu'],
-                        ['Dịch vụ', '/dich-vu'],
-                        ['Dự án', '/du-an'],
-                        ['Tin tức', '/tin-tuc'], 
-                        ['Chứng chỉ', '/chung-chi']
-                    ]; 
+                @php
+                $navItems = [
+                ['Trang chủ', '/'],
+                ['Giới thiệu', '/gioi-thieu'],
+                ['Dịch vụ', '/dich-vu'],
+                ['Dự án', '/du-an'],
+                ['Tin tức', '/tin-tuc'],
+                ['Chứng chỉ', '/chung-chi']
+                ];
                 @endphp
                 @foreach($navItems as $item)
-                    <a href="{{ $item[1] }}" class="text-[13px] font-bold uppercase tracking-wider text-navy/70 hover:text-orange transition-all relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-orange hover:after:w-full after:transition-all">
-                        {{ $item[0] }}
-                    </a>
+                <a href="{{ $item[1] }}" class="text-[13px] font-bold uppercase tracking-wider text-navy/70 hover:text-orange transition-all relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-orange hover:after:w-full after:transition-all">
+                    {{ $item[0] }}
+                </a>
                 @endforeach
-                
+
                 <a href="/lien-he" class="bg-orange text-white px-7 py-3 rounded-full text-[12px] font-black uppercase shadow-lg shadow-orange/30 hover:shadow-orange/50 hover:-translate-y-0.5 transition-all">
                     Liên hệ ngay
                 </a>
@@ -81,12 +84,14 @@
     {{-- 5. FOOTER --}}
     <footer class="bg-navy text-white relative mt-20 slant-top pt-32 pb-12 overflow-hidden">
         <div class="absolute top-0 right-0 w-64 h-64 bg-dot-grid opacity-10"></div>
-        
+
         <div class="mx-auto max-w-7xl px-5">
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                 <div class="space-y-6">
                     <div class="flex items-center gap-3">
-                        <div class="bg-white p-2 rounded-md"><span class="text-navy font-black text-xl italic">GN</span></div>
+                        <div class="bg-white w-12 h-12 rounded-md overflow-hidden">
+                            <img src="/images/logo.png" alt="Gia Nguyen logo" class="w-full h-full object-contain p-1">
+                        </div>
                         <span class="font-black text-xl uppercase tracking-tighter">Gia Nguyên</span>
                     </div>
                     <p class="text-white/50 text-sm leading-relaxed">
@@ -146,4 +151,5 @@
     </footer>
 
 </body>
+
 </html>

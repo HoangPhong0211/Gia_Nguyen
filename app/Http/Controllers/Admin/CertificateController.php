@@ -11,9 +11,26 @@ use Illuminate\Support\Str;
 class CertificateController extends Controller
 {
     // Hiển thị danh sách chứng chỉ trong Admin
-    public function index()
+    public function index(Request $request)
     {
-        $certificates = Certificate::orderBy('id', 'asc')->get();
+        $query = Certificate::query();
+
+        if ($request->filled('year')) {
+            $query->whereYear('issue_date', $request->year);
+        }
+
+        if ($request->filled('type')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->type . '%')
+                    ->orWhere('serial_number', 'like', '%' . $request->type . '%');
+            });
+        }
+
+        $sort = $request->get('sort', 'latest');
+        $query->orderBy('issue_date', $sort === 'oldest' ? 'asc' : 'desc');
+
+        $certificates = $query->get();
+
         return view('admin.certificates.index', compact('certificates'));
     }
 

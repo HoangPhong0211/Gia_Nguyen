@@ -9,9 +9,27 @@ use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::latest()->get();
+        $query = Project::query();
+
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+
+        if ($request->filled('year')) {
+            $query->where('year', $request->year);
+        }
+
+        if ($request->filled('location')) {
+            $query->where('location', 'like', '%' . $request->location . '%');
+        }
+
+        $sort = $request->get('sort', 'latest');
+        $query->orderBy('created_at', $sort === 'oldest' ? 'asc' : 'desc');
+
+        $projects = $query->get();
+
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -25,7 +43,7 @@ class ProjectController extends Controller
         // 1. Validate dữ liệu
         $request->validate([
             'title' => 'required|max:255',
-            'category' => 'required|in:bridge,factory,urban',
+            'category' => 'required|in:energy,transport,agriculture,civil-industrial',
             'location' => 'nullable|string',
             'year' => 'nullable|integer|min:1900|max:2099',
             'summary' => 'nullable|string',
@@ -75,7 +93,7 @@ class ProjectController extends Controller
         // 2. Validate dữ liệu (Tương tự store nhưng image không bắt buộc)
         $request->validate([
             'title' => 'required|max:255',
-            'category' => 'required|in:bridge,factory,urban',
+            'category' => 'required|in:energy,transport,agriculture,civil-industrial',
             'location' => 'nullable|string',
             'year' => 'nullable|integer|min:1900|max:2099',
             'description' => 'required',
