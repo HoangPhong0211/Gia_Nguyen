@@ -9,61 +9,86 @@
             Năng lực pháp lý & Quản lý chất lượng
         </span>
         <h1 class="text-4xl md:text-6xl font-black text-white uppercase leading-tight tracking-tight">
-            Chứng chỉ <span class="text-orange">&</span> Giấy phép
+            Chứng chỉ <span class="text-orange">&</span> Thiết bị
         </h1>
         <p class="mt-6 text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
-            Hệ thống văn bằng, chứng chỉ công nhận năng lực thí nghiệm chuyên ngành xây dựng mã số LAS-XD 980 của Gia Nguyên.
+            Hệ thống văn bằng, chứng chỉ và thiết bị công nhận năng lực thí nghiệm chuyên ngành xây dựng mã số LAS-XD 980 của Gia Nguyên.
         </p>
     </div>
 </section>
 
-{{-- 2. GRID DANH SÁCH CHỨNG CHỈ --}}
+{{-- 2. GRID DANH SÁCH CHỨNG CHỈ / THIẾT BỊ --}}
 <section class="py-24 bg-white">
     <div class="mx-auto max-w-7xl px-5">
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             @forelse ($certificates as $cert)
+                @php
+                    // Xử lý ảnh mặt trước (Ảnh đại diện chính)
+                    if (!empty($cert->image_front)) {
+                        // Vì Controller dùng lệnh store('certificates', 'public'), ảnh sẽ nằm trong thư mục storage
+                        $imageUrl = asset('storage/' . $cert->image_front);
+                    } else {
+                        $imageUrl = asset('images/no-image.jpg'); // Ảnh mặc định nếu chưa up
+                    }
+
+                    // Xử lý ảnh mặt sau (Nếu có)
+                    $imageBackUrl = !empty($cert->image_back) ? asset('storage/' . $cert->image_back) : null;
+                @endphp
+
                 <article class="group bg-white rounded-[2.5rem] p-5 border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
-                    {{-- Khung ảnh chứng chỉ (Khổ đứng A4) --}}
+                    {{-- Khung ảnh --}}
                     <div class="relative aspect-[3/4] overflow-hidden rounded-[1.8rem] bg-slate-50 border border-slate-200">
-                        <img src="{{ asset($cert->image ?? 'images/no-image.jpg') }}" 
-                             alt="{{ $cert->name }}" 
+                        {{-- In ảnh đại diện ra --}}
+                        <img src="{{ $imageUrl }}" 
+                             alt="{{ $cert->name ?? 'Thiết bị/Chứng chỉ' }}" 
                              class="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-700">
                         
                         {{-- Overlay khi hover --}}
-                        <div class="absolute inset-0 bg-navy/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
-                            <a href="{{ asset($cert->image) }}" target="_blank" class="w-14 h-14 bg-orange text-white flex items-center justify-center rounded-full shadow-lg hover:scale-110 transition-transform mb-4">
-                                <i class="fa-solid fa-expand text-xl"></i>
+                        <div class="absolute inset-0 bg-navy/90 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm gap-3 px-4">
+                            
+                            {{-- Nút xem mặt trước --}}
+                            <a href="{{ $imageUrl }}" target="_blank" class="w-full py-3 bg-orange text-white flex items-center justify-center gap-2 rounded-xl shadow-lg hover:scale-105 transition-transform text-[11px] font-black uppercase tracking-widest">
+                                <i class="fa-solid fa-image"></i> Xem mặt trước
                             </a>
-                            <span class="text-[10px] font-black text-white uppercase tracking-widest">Phóng to ảnh</span>
+                            
+                            {{-- Nếu có ảnh mặt sau thì hiển thị thêm nút này --}}
+                            @if($imageBackUrl)
+                                <a href="{{ $imageBackUrl }}" target="_blank" class="w-full py-3 bg-white text-navy flex items-center justify-center gap-2 rounded-xl shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:bg-orange hover:text-white hover:scale-105 transition-all text-[11px] font-black uppercase tracking-widest">
+                                    <i class="fa-solid fa-images"></i> Xem mặt sau
+                                </a>
+                            @endif
                         </div>
                     </div>
 
-                    {{-- Thông tin chứng chỉ --}}
+                    {{-- Thông tin chi tiết --}}
                     <div class="mt-8 px-2">
                         <div class="flex items-center gap-2 mb-3">
                             <span class="h-[2px] w-6 bg-orange"></span>
                             <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                                {{ $cert->created_at->format('Y') }}
+                                {{ \Carbon\Carbon::parse($cert->issue_date)->format('d/m/Y') }}
                             </span>
                         </div>
+                        
                         <h3 class="text-base font-black text-navy uppercase leading-tight group-hover:text-orange transition-colors line-clamp-2 min-h-[3rem]">
                             {{ $cert->name }}
                         </h3>
                         
-                        @if($cert->description)
-                        <div class="mt-4 pt-4 border-t border-slate-50 text-[13px] text-slate-500 line-clamp-2 italic">
-                            {!! strip_tags($cert->description) !!}
+                        {{-- Hiển thị số seri nếu có --}}
+                        @if($cert->serial_number)
+                        <div class="mt-3 text-xs font-bold text-slate-500 border-t border-slate-100 pt-3">
+                            Số hiệu GCN: <span class="text-navy">{{ $cert->serial_number }}</span>
                         </div>
                         @endif
                     </div>
                 </article>
+
             @empty
                 <div class="col-span-full py-24 text-center">
                     <div class="inline-flex items-center justify-center w-20 h-20 bg-slate-50 rounded-full mb-6">
                         <i class="fa-solid fa-file-signature text-slate-300 text-3xl"></i>
                     </div>
                     <p class="text-slate-400 italic font-bold uppercase tracking-widest">
-                        Dữ liệu chứng chỉ đang được cập nhật...
+                        Dữ liệu đang được cập nhật...
                     </p>
                 </div>
             @endforelse
